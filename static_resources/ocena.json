@@ -1,0 +1,86 @@
+[
+	{
+		"IDKompetencja": 
+			{
+				"id": 1,
+				"nazwaKompetencji": "Komptencja1"
+			},
+		"IDPracownik": 
+			{
+				"emial": "panTestowy@test.com",
+				"id": 1,
+				"imie": "Pan",
+				"nazwsiko": "Testowy1",
+				"notatki": "Brygadzista Kamil Oleszkiewicz",
+				"sciezka": "testowa/sciezka",
+				"typOsoby": "Pracownik"
+			},
+		"archiwum": false,
+		"data": "2016-04-28",
+		"id": 1,
+		"silaKompetencji": 0.45
+	},
+	{
+		"IDKompetencja": 
+			{
+				"id": 2,
+				"nazwaKompetencji": "Komptencja2"
+			},
+		"IDPracownik": 
+			{
+				"emial": "panTestowy@test.com",
+				"id": 2,
+				"imie": "Pan",
+				"nazwsiko": "Testowy2",
+				"notatki": "Brygadzista Kamil Oleszkiewicz",
+				"sciezka": "testowa/sciezka",
+				"typOsoby": "Pracownik"
+			},
+		"archiwum": false,
+		"data": "2016-04-28",
+		"id": 2,
+		"silaKompetencji": 0.45
+	},
+	{
+		"IDKompetencja": 
+			{
+				"id": 3,
+				"nazwaKompetencji": "Komptencja3"
+			},
+		"IDPracownik": 
+			{
+				"emial": "panTestowy@test.com",
+				"id": 3,
+				"imie": "Kamil",
+				"imie": "Pan",
+				"nazwsiko": "Testowy3",
+				"sciezka": "testowa/sciezka",
+				"typOsoby": "Pracownik"
+			},
+		"archiwum": false,
+		"data": "2016-04-28",
+		"id": 3,
+		"silaKompetencji": 0.45
+	},
+	{
+		"IDKompetencja": 
+			{
+				"id": 4,
+				"nazwaKompetencji": "Komptencja4"
+			},
+		"IDPracownik": 
+			{
+				"emial": "panTestowy@test.com",
+				"id": 3,
+				"imie": "Kamil",
+				"imie": "Pan",
+				"nazwsiko": "Testowy4",
+				"sciezka": "testowa/sciezka",
+				"typOsoby": "Pracownik"
+			},
+		"archiwum": false,
+		"data": "2016-04-28",
+		"id": 4,
+		"silaKompetencji": 0.45
+	}
+]

@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"nazwaProcesu": "Proces1",
+		"opis": "To jest proces1",
+		"optymalnaLiczbaPrac": 10,
+		"priorytet": "niski",
+		"sredniaKompetencji": 0.5343,
+		"liczbaPracownikow": 6,
+		"liczbaStanowisk": 5
+	},
+	{
+		"id": 9,
+		"nazwaProcesu": "Proces9",
+		"opis": "To jest proces9",
+		"optymalnaLiczbaPrac": 9,
+		"priorytet": "niski",
+		"sredniaKompetencji": 0.5343,
+		"liczbaPracownikow": 8,
+		"liczbaStanowisk": 4
+	},
+	{
+		"id": 109,
+		"nazwaProcesu": "Proces109",
+		"opis": "To jest proces109",
+		"optymalnaLiczbaPrac": 10,
+		"priorytet": "niski",
+		"sredniaKompetencji": 0.7843,
+		"liczbaPracownikow": 3,
+		"liczbaStanowisk": 3
+	},
+	{
+		"id": 1009,
+		"nazwaProcesu": "Proces1009",
+		"opis": "To jest proces1009",
+		"optymalnaLiczbaPrac": 9,
+		"priorytet": "niski",
+		"sredniaKompetencji": 0.7343,
+		"liczbaPracownikow": 7,
+		"liczbaStanowisk": 6
+	}
+]

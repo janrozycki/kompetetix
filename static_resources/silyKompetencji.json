@@ -1,0 +1,367 @@
+[
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 19,
+    "index": 4,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 16,
+      "nazwa": "Wiercenie otworów w ścianie2",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 3,
+      "imie": "Kamil",
+      "nazwisko": "Oleszkiewicz",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 0.25
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 18,
+    "index": 4,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 15,
+      "nazwa": "Wiercenie otworów w ścianie1",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 3,
+      "imie": "Kamil",
+      "nazwisko": "Oleszkiewicz",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 0
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 20,
+    "index": 4,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 17,
+      "nazwa": "Wiercenie otworów w ścianie3",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 3,
+      "imie": "Kamil",
+      "nazwisko": "Oleszkiewicz",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 0.5
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 21,
+    "index": 4,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 18,
+      "nazwa": "Wiercenie otworów w ścianie4",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 3,
+      "imie": "Kamil",
+      "nazwisko": "Oleszkiewicz",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 0.75
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 22,
+    "index": 4,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 19,
+      "nazwa": "Wiercenie otworów w ścianie5",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 3,
+      "imie": "Kamil",
+      "nazwisko": "Oleszkiewicz",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 1
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 23,
+    "kompetencja": {
+      "bazoweId": [
+        17,
+        18
+      ],
+      "id": 15,
+      "nazwa": "Wiercenie otworów w ścianie1",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 4,
+      "imie": "Michal",
+      "nazwisko": "Michalski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 1
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 24,
+    "kompetencja": {
+      "bazoweId": [
+        17,
+        18
+      ],
+      "id": 16,
+      "nazwa": "Wiercenie otworów w ścianie2",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 4,
+      "imie": "Michal",
+      "nazwisko": "Michalski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 1
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 25,
+    "kompetencja": {
+      "bazoweId": [
+        17,
+        18
+      ],
+      "id": 17,
+      "nazwa": "Wiercenie otworów w ścianie3",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 4,
+      "imie": "Michal",
+      "nazwisko": "Michalski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 1
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 26,
+    "kompetencja": {
+      "bazoweId": [
+        17,
+        18
+      ],
+      "id": 18,
+      "nazwa": "Wiercenie otworów w ścianie4",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 4,
+      "imie": "Michal",
+      "nazwisko": "Michalski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 1
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 27,
+    "kompetencja": {
+      "bazoweId": [
+        17,
+        18
+      ],
+      "id": 19,
+      "nazwa": "Wiercenie otworów w ścianie5",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 4,
+      "imie": "Michal",
+      "nazwisko": "Michalski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 1
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 120,
+    "kompetencja": {
+      "bazoweId": [
+        19,
+        20
+      ],
+      "id": 16,
+      "nazwa": "Wiercenie otworów w ścianie1",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 5,
+      "imie": "Marek",
+      "nazwisko": "Markowski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 0.5
+  },
+  {
+    "archiwum": false,
+    "data": "2016-06-06T10:36:43.734+02:00",
+    "id": 121,
+    "kompetencja": {
+      "bazoweId": [
+        19,
+        20
+      ],
+      "id": 19,
+      "nazwa": "Wiercenie otworów w ścianie21",
+      "rodzicId": []
+    },
+    "pracownik": {
+      "dzialy": [
+        {
+          "id": 6,
+          "nazwaDzialu": "DziaĹ‚ 1",
+          "procesy": []
+        }
+      ],
+      "email": "Kamil@wp.pl",
+      "id": 5,
+      "imie": "Marek",
+      "nazwisko": "Markowski",
+      "notatki": "Jetsem pracownikiem",
+      "sciezka": "http"
+    },
+    "silaKompetencji": 0.5
+  }
+]

@@ -1,0 +1,132 @@
+<!-- HELLO -->
+    <div class="row hello">
+        <div class="col s10 offset-s1">
+            <div class="valign-wrapper">
+                <h5 class="valign left-align title">Witaj, Jan Kowalski!</h5>
+            </div>
+        </div>
+    </div>
+<!-- /HELLO -->
+<!-- BREADCRUMBS -->
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3>Dashboard</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->
+<!-- CONTENT -->
+<div id="dashboard">
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <div class="dashboard-table">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Proces
+                            </th>
+                            <th>
+                                Opis
+                            </th>
+                            <th>
+                                Pracowników
+                            </th>
+                            <th>
+                                Priorytet
+                            </th>
+                            <th>
+                                Edycja
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="proces in procesy">
+                            <td>
+                                <span class="strong">{{proces.id}}</span>
+                            </td>
+                            <td>
+                                {{proces.nazwaProcesu}}
+                            </td>
+                            <td>
+                                {{proces.opis}}
+                            </td>
+                            <td>
+                                <span class="strong">{{proces.optymalnaLiczbaPrac}}</span> Optymalnie
+                            </td>
+                            <td>
+                                {{proces.priorytet}}
+                            </td>
+                            <td>
+                                Edycja
+                            </td>
+                        </tr>     
+                    </tbody>
+                </table>
+            </div> <!-- /dashboard-table -->
+        </div> <!-- /col s10 -->
+    </div> <!-- /row -->
+    <div class="row dash-boxes">
+        <div class="col s10 offset-s1">
+            <div class="row">
+                <div class="col s6 m3">
+                  <div class="card color-dark-blue hoverable">
+                    <div class="card-content white-text">
+                        <div class="count">
+                            <span class="number">{{liczbaUzytkownikow}}</span>
+                            <span>pracowników</span>
+                        </div>
+                    </div>
+                    <div class="card-action clouds-color">
+                      <a href="#">Dodaj pracownika +</a>
+                    </div>
+                  </div>
+                </div>                      
+                <div class="col s6 m3">
+                  <div class="card color-dark-blue hoverable">
+                    <div class="card-content white-text">
+                        <div class="count">
+                            <span class="number">{{liczbaProcesow}}</span>
+                            <span>procesów</span>
+                        </div>
+                    </div>
+                    <div class="card-action clouds-color">
+                      <a href="#">Dodaj proces +</a>
+                    </div>
+                  </div>
+                </div>               
+                <div class="col s6 m3">
+                  <div class="card color-dark-blue hoverable">
+                    <div class="card-content white-text">
+                        <div class="count">
+                            <span class="number">{{liczbaStanowisk}}</span>
+                            <span>stanowiska</span>
+                        </div>
+                    </div>
+                    <div class="card-action clouds-color">
+                      <a href="#">Dodaj stanowisko +</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s6 m3">
+                  <div class="card color-dark-blue hoverable">
+                    <div class="card-content white-text">
+                        <div class="count">
+                            <span class="number">{{liczbaDzialow}}</span>
+                            <span>działy</span>
+                        </div>
+                    </div>
+                    <div class="card-action clouds-color">
+                      <a href="#">Dodaj dział +</a>
+                    </div>
+                  </div>
+                </div>
+            </div> <!-- /row -->
+        </div> <!-- /col s10 -->
+    </div> <!-- /row -->
+</div> <!-- home -->
+<!-- /CONTENT -->

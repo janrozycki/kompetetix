@@ -1,0 +1,26 @@
+[	
+	{
+		"id":1,
+		"poziomdostepu": "Brygadzista"
+	},
+	{
+		"id":2,
+		"poziomdostepu": "Kierownik brygady"
+	},
+	{
+		"id":3,
+		"poziomdostepu": "Mistrz"
+	},
+	{
+		"id":4,
+		"poziomdostepu": "Kierownik działu"
+	},
+	{
+		"id":5,
+		"poziomdostepu": "Dyrektor"
+	},
+	{
+		"id":6,
+		"poziomdostepu": "Administrator"
+	}
+]

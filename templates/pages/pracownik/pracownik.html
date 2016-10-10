@@ -1,0 +1,114 @@
+<!-- BREADCRUMBS -->
+    <div class="row dzialy">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3>Pracownicy > {{pracownik.imie}} {{pracownik.nazwisko}}</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->    
+<!-- CONTENT -->
+<div id="worker">
+    <div class="row boxes">
+        <div class="col s10 offset-s1">
+            <div class="row worker">
+                <div class="col s9">
+                    <div class="align-right">
+                        <span tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj kompetencję">
+                            <a ng-click="pobierzWszystkieKompetencje()" modal href="#addworkercompetence" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+                        </span>
+                        <span tooltipped data-position="left" data-delay="50" data-tooltip="Edytuj kompetencje" ng-click="toggleEditMode()">
+                            <a class="btn-floating btn-large waves-effect waves-light dark-blue-bg" ><i class="material-icons">edit</i></a>
+                        </span>
+                        <span tooltipped data-position="left" data-delay="50" data-tooltip="Usuń pracownika" ng-click="usunPracownika()">
+                            <a href="#addsection" class="btn-floating btn-large waves-effect waves-light dark-blue-bg"><i class="material-icons">delete</i></a>
+                        </span>
+                    </div>
+                    <h3>{{pracownik.imie}} {{pracownik.nazwisko}}</h3>
+                    <h5 ng-repeat="dzial in dzialyPracownika">{{dzial.nazwaDzialu}}</h5>
+
+                    <div class="chips">
+                        <h5>Kompetencje:</h5>
+                        <div class="chip stanowisko" ng-repeat="kompetencja in kompetencje">
+                            {{kompetencja.kompetencja.nazwa}} || {{kompetencja.silaKompetencji}}
+                            <a modal href="#editworkercompetence" class="modal-trigger"  style="color: #333;"><i class="material-icons">edit</i></a>
+                        </div>
+                    </div>
+                </div>                      
+                <div class="col s3">
+                    <div class="card small">
+                        <div class="card-image">
+                            <!--<img ng-src="{{pracownik.sciezka}}">-->
+                            <img src="images/avatar-default.png">
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /row -->
+        </div> <!-- /col s10 -->
+    </div> <!-- /row -->
+    <!-- ZMIANA 3 \/ -->
+    <!-- MODAL -->
+    <div id="addworkercompetence" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj kompetencje</h4>
+            <div class="row">
+
+                <div class="col s10 input-field">
+                    <select ng-model="nowaKompetencjaPracownika" material-select class="selectInput position-select choose-competence">
+                        <option ng-repeat="kompetencja in wszystkieKompetencje" value="{{kompetencja.id}}">{{kompetencja.nazwa}}</option>
+                    </select>
+                    <label>Wybierz kompetencję</label>
+                </div>
+                <div class="input-field col s2">
+                </div>
+
+                <div class="col s10 input-field">
+                    <select ng-model="ocenaNowejKompetencji" material-select watch class="select-input position-select choose-position">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Wybierz wartość kompetencji</label>
+                </div>
+                <div class="input-field col s2">
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in" ng-click="dodajPracownikowiKompetencje()">Dodaj</button>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    <!-- MODAL -->
+    <div id="editworkercompetence" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Zmień wartość kompetencji:</h4>
+            <p>Aktualna wartość kompetencji *Nazwa kompetencji* wynosi: *Wartość kompetencji*</p>
+            <div class="row">
+                <div class="col s10" input-field>
+                    <select ng-model="nowaOcenaKompetencji" material-select watch class="selectInput position-select choose-position">
+                        <option class="optionInput" value="0">0</option>
+                        <option class="optionInput" value="1">1</option>
+                        <option class="optionInput" value="2">2</option>
+                        <option class="optionInput" value="3">3</option>
+                        <option class="optionInput" value="4">4</option>
+                    </select>
+                    <label>Wybierz nową wartość dla kompetencji</label>
+                </div>
+                <div class="col s2">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in">Zatwierdź</button>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    <!-- ZMIANA 3 /\ -->
+</div> <!-- /worker -->
+<!-- /CONTENT -->

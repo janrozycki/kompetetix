@@ -1,0 +1,58 @@
+[
+	{
+		"IDDzial":
+			{
+				"id": 1,
+				"nazwaDzialu": "Dzial1"
+			},
+		"IDProces":
+			{
+				"id": 1,
+				"nazwaProcesu": "Proces1"
+			},
+		"id": 1,
+		"kolejnoscProcesu": 1
+	},
+	{
+		"IDDzial":
+			{
+				"id": 1,
+				"nazwaDzialu": "Dzial1"
+			},
+		"IDProces":
+			{
+				"id": 2,
+				"nazwaProcesu": "Proces2"
+			},
+		"id": 2,
+		"kolejnoscProcesu": 2
+	},
+	{
+		"IDDzial":
+			{
+				"id": 1,
+				"nazwaDzialu": "Dzial1"
+			},
+		"IDProces":
+			{
+				"id": 3,
+				"nazwaProcesu": "Proces3"
+			},
+		"id": 3,
+		"kolejnoscProcesu": 3
+	},
+	{
+		"IDDzial":
+			{
+				"id": 1,
+				"nazwaDzialu": "Dzial1"
+			},
+		"IDProces":
+			{
+				"id": 3,
+				"nazwaProcesu": "Proces3"
+			},
+		"id": 3,
+		"kolejnoscProcesu": 3
+	}
+]

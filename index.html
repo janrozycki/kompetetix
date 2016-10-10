@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="MortApp">
+<head>
+    <meta charset="utf-8">
+    <title>Kompetetix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta keywords="">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!-- MODERNIZR -->
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<!-- MAIN CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css"> 
+<!-- JQUERY -->    
+    <script src="js/jquery-1.12.3.min.js"></script>
+
+<!-- Cytoscape -->
+    <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
+    <script src="https://cdn.rawgit.com/cpettitt/dagre/v0.7.4/dist/dagre.min.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-dagre/1.1.2/cytoscape-dagre.js"></script>
+    
+</head>
+<body>
+<!-- TOPBAR -->
+    <div class="navbar-fixed top-nav">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Kompetetix</a>
+                <!--Opcje do rozbudowani na przyszłość: wyszukiwanie oraz profil uzytownika
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#"><img src="icons/search.png" /></a></li>
+                    <li><a href="#"><img src="icons/account.png" /></a></li>
+                </ul>
+                -->
+            </div>
+        </nav>
+    </div>
+<!-- /TOPBAR -->
+<!-- LEFTMENU -->
+     <div class="menu-left">
+         <div class="menu-left-wrapper">
+             <div class="icons">
+                 <a href="#/dashboard"><img src="icons/dashboard.png" /><span class="menu-text">Dashboard</span></a>
+             </div>
+             <div class="icons">
+                 <a href="#/pracownicy"><img src="icons/contact.png" /><span class="menu-text hidden">Pracownicy</span></a>
+             </div>
+             <div class="icons">
+                 <a href="#/dzialy"><img src="icons/chart.png" /><span class="menu-text hidden">Działy</span></a>
+             </div>
+             <div class="icons">
+                 <a href="#/kompetencje"><img src="icons/list.png" /><span class="menu-text hidden">Kompetencje</span></a>
+             </div>
+         </div>
+    </div>
+<!-- /LEFTMENU -->
+
+<!-- INCLUDING VIEWS VIA ANGULAR -->
+<div ng-view></div>
+
+<footer>
+    
+</footer>
+<!-- JS START -->
+    <!-- MATERIALIZE -->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!-- LADDA BUTTON JS -->
+    <script src="js/spin.min.js"></script>
+    <script src="js/ladda.min.js"></script>
+    
+    <!-- ANGULARJS LIBRARIES -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
+
+    <!-- ANGULARJS APP FILE -->
+    <script src="app.js"></script>
+
+    <!-- ANGULAR JS VIEWS FILES -->
+    <script src="templates/pages/dashboard/dashboard.js"></script>
+    <script src="templates/pages/dzial/dzial.js"></script>
+    <script src="templates/pages/dzialy/dzialy.js"></script>
+    <script src="templates/pages/pracownik/pracownik.js"></script>
+    <script src="templates/pages/pracownicy/pracownicy.js"></script>
+    <script src="templates/pages/proces/proces.js"></script>
+    <script src="templates/pages/kompetencje/kompetencje.js"></script>
+    <script src="js/filters/customFilters.js"></script>
+
+    <!-- MAIN JS -->
+    <script src="js/main.js"></script> 
+
+    
+<!-- JS END -->
+</body>     
+</html>

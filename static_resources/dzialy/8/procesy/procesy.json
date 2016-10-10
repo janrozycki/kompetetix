@@ -1,0 +1,22 @@
+[
+	{
+		"id": 8,
+		"nazwaProcesu": "Proces8",
+		"opis": "To jest proces8",
+		"optymalnaLiczbaPrac": 80,
+		"priorytet": "niski",
+		"sredniaKompetencji": 0.5343,
+		"liczbaPracownikow": 6,
+		"liczbaStanowisk": 5
+	},
+	{
+		"id": 16,
+		"nazwaProcesu": "Proces1",
+		"opis": "To jest proces1",
+		"optymalnaLiczbaPrac": 10,
+		"priorytet": "niski",
+		"sredniaKompetencji": 0.5343,
+		"liczbaPracownikow": 6,
+		"liczbaStanowisk": 5
+	}
+]

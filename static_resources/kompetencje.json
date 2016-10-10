@@ -1,0 +1,74 @@
+[
+    {   
+        "id": 1,
+        "nazwa": "Kompetencja główna",
+        "bazoweId": [2,3,4],
+        "rodzicId": []
+    },
+    {   
+        "id": 2,
+        "nazwa": "Podkompetencja A",
+        "bazoweId": [5,6],
+        "rodzicId": [1]
+    },
+    {   
+        "id": 3,
+        "nazwa": "Podkompetencja B",
+        "bazoweId": [7,8,9,10],
+        "rodzicId": [1]
+    },
+    {   
+        "id": 4,
+        "nazwa": "Podkompetencja C",
+        "bazoweId": [11,12],
+        "rodzicId": [1]
+    },
+    {   
+        "id": 5,
+        "nazwa": "Składowa A1",
+        "bazoweId": [],
+        "rodzicId": [2]
+    },
+    {   
+        "id": 6,
+        "nazwa": "Składowa A2",
+        "bazoweId": [],
+        "rodzicId": [2]
+    },
+    {   
+        "id": 7,
+        "nazwa": "Składowa B1",
+        "bazoweId": [],
+        "rodzicId": [3]
+    },
+    {   
+        "id": 8,
+        "nazwa": "Składowa B2",
+        "bazoweId": [],
+        "rodzicId": [3]
+    },
+    {   
+        "id": 9,
+        "nazwa": "Składowa B3",
+        "bazoweId": [],
+        "rodzicId": [3]
+    },
+    {   
+        "id": 10,
+        "nazwa": "Składowa B4",
+        "bazoweId": [],
+        "rodzicId": [3]
+    },
+    {   
+        "id": 11,
+        "nazwa": "Składowa C1",
+        "bazoweId": [],
+        "rodzicId": [4]
+    },
+    {   
+        "id": 12,
+        "nazwa": "Składowa C2",
+        "bazoweId": [],
+        "rodzicId": [4]
+    }
+]

@@ -1,0 +1,367 @@
+/* VARIABLES */
+//$background-color: rgb(52,73,94);
+$background-color: #ecf0f1;
+$darkbluecolor: rgb(52,73,94);
+
+/* IMPORTS*/
+@import 'normalize';
+@import 'ladda.min.css';
+@import 'materialize.min.css';
+/* SCSS */
+body{
+    background: $background-color;
+}
+.hidden{
+    display: none !important;
+}
+.row{
+    display: none;
+}
+.workspace-name{
+    overflow: hidden;
+    background: #fff;
+    h3{
+        margin-left: 1em;
+        font-weight: 300;
+        font-size: 1.5em;
+        margin: .7em 1em;
+        a{
+            color: #000;
+            transition: 0.5s;
+            &:hover{
+                color: #999;
+                transition: 0.5s;
+            }
+        }
+    }
+    box-shadow: 0px 3px 5px #ccc;
+    position: relative;
+    z-index: 2;
+}
+
+.count{
+    padding: 0em;
+    text-align: center;
+    font-size: 1.3em;
+    .number{
+        display: block;
+        font-size: 3em;
+    }            
+}
+.row.dzialy{
+    margin-top: 20px;
+}
+.brand-logo{
+    left: 30px;
+}
+.top-nav{
+    nav{        
+        background: $darkbluecolor;
+        ul{
+            line-height: 1rem;
+            li{
+                img{
+                    width: 40px;
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
+}
+.menu-left{
+    background-color: $darkbluecolor;
+    height: 100vh;
+    -webkit-box-shadow: 11px 0px 18px -14px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 0px 18px -14px rgba(0,0,0,0.75);
+    box-shadow: 11px 0px 18px -14px rgba(0,0,0,0.75);
+    transition: 0.5s;
+    z-index: 1002;
+    position: fixed;
+    width: 4em;
+
+    .menu-left-wrapper{
+        overflow: hidden;
+        margin-left: 10px;
+        .icons{
+            position: relative;
+            margin: 1em 0;
+            a{
+                display: block;  
+                &:hover{
+                    background: rgba(255,255,255,0.1);
+                    transition: 0.3s;
+                }
+                
+                img{
+                    width: 40px;
+                    vertical-align: bottom
+                }
+                .menu-text{
+                    color: #fff;
+                    position: absolute;
+                    left: 60px;
+                    font-size: 1.3em;
+                    line-height: 2em;
+                }
+            }
+        }
+    }
+}
+.hello{
+    background: #bdc3c7;    
+}
+.valign-wrapper{
+    margin: 70px 0;
+    .title{
+        margin-left: 30px;
+        font-size: 3em;
+        font-family: 'Roboto', sans-serif;
+    }
+}
+.dashboard-table, .process-table{
+    table{
+        background: #fff;
+        td, th{
+            padding: 1em 0.3em;
+            text-align: center;
+        }
+        th{
+            font-size: 1.1em;
+        }
+        td{
+            .strong{
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+        }
+    }
+}
+.dash-boxes{
+    .color-dark-blue{
+        background: $darkbluecolor;
+    }
+    .card-action{
+        a{
+            text-align: right;
+        }
+    }
+}
+.boxes{
+    .dark-blue-bg{
+        background: $darkbluecolor;
+    }
+    .align-right{
+        float: right;
+        margin-bottom: 15px;
+        & > span{
+            font-size: 2em;
+        }
+    }
+    &.departments{
+        .card-title{
+            &:after{
+                content: "";
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: #000;
+                margin-bottom: 10px;
+            }
+        }
+        .card-content{
+            p{
+                padding: 0.5em 0;
+                font-size: 1.1em;
+                span{
+                    float: right;
+                }
+                &:last-child{
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+    
+    .card-action{
+        background: $darkbluecolor;
+    }
+}
+.modal-footer{
+    a, button{
+        margin-right: 10px !important;
+        &:first-child{
+            margin-right: 0 !important;
+        }
+    }       
+}
+.process-table{
+    table{
+        th,td{
+            .strong{
+                font-size: 1em;
+            }
+        }
+    }
+}
+.tomato{
+    background: tomato;
+}
+
+
+.workers, .worker{
+    .card.small{
+        height: 100%;
+        .card-image{
+            max-height: 100%;
+            position: relative;
+            .edit{
+                position: absolute;
+                top: 8px;
+                right: 5px;
+                z-index: 99;
+                color: rgba(0,0,0,0.4);
+            }
+            .card-title{
+                text-shadow: 0 0 10px #000;
+                font-size: 1.4em;
+                span{
+                    display: block;
+                    font-size: 0.7em;
+                }
+            }
+        }
+    }
+}
+.worker{
+    .align-right{
+        a:first-child{
+            margin-right: 10px;
+        }
+    }
+}
+.worker-competences{
+    display: none;
+    width: 100%;
+    overflow: scroll;
+    .element{
+        display: inline-block;
+        margin: 5px;
+        .name{
+            font-size: 0.7em;
+        }
+        .competence-value{
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+}
+.card-action{
+    a{
+        color: #ecf0f1 !important;
+        &:hover{
+            color: #bdc3c7 !important;
+        }
+    }       
+}
+.chips{
+    margin-top: 30px;
+    h5{
+        display: block;
+        margin-bottom: 30px;
+    }
+}
+.chip{
+    margin-bottom: 10px;
+}
+
+.stanowisko{
+    background: #bdc3c7;
+}
+
+.progress-radial {
+    margin: 0 auto;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: tomato;
+}
+
+.collection .collection-item.avatar{
+    min-height: 0;
+}
+
+.competence-value{
+    display: block;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    background: tomato;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.workers-list{
+    .workers-list-box{
+        width: 100%;
+        max-height: 300px;
+        overflow: scroll;
+    }
+    li{
+        position: relative;
+        &.selected{
+            background: #efefef;
+        }
+        a{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.ladda-button{
+    font-size: 1rem;
+}
+/* -------------------------------------
+ * Optional centered circle w/text
+ * ------------------------------------- */
+.progress-radial .overlay {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+/* -------------------------------------
+ * Mixin for progress-% class
+ * ------------------------------------- */
+.progress-0 {
+    background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(90deg, #ff6347 50%, #2f3439 50%, #2f3439);
+}
+
+.progress-25 {
+    background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(180deg, #ff6347 50%, #2f3439 50%, #2f3439);
+}
+
+.progress-50 {
+    background-image: linear-gradient(-90deg, #ff6347 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #ff6347 50%, #2f3439 50%, #2f3439);
+}
+
+.progress-75 {
+    background-image: linear-gradient(0deg, #ff6347 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #ff6347 50%, #2f3439 50%, #2f3439);
+}
+
+.progress-100 {
+    background-image: linear-gradient(90deg, #ff6347 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #ff6347 50%, #2f3439 50%, #2f3439);
+}
+

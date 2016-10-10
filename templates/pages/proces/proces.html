@@ -1,0 +1,243 @@
+<!-- BREADCRUMBS -->
+    <div class="row dzialy">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3><a href="dzialy.html">Działy</a> > <a href="dzial.html">{{dzial.nazwaDzialu}}</a> > {{proces.nazwaProcesu}}</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->
+<!-- CONTENT -->
+<div id="process">
+    <div class="row boxes">
+        <div class="col s10 offset-s1">
+            <div class="align-right">
+                <a href="#add-worker" class="waves-effect waves-light btn modal-action modal-close blue-grey modal-trigger">Dodaj pracownika</a>
+            <a href="#add-position" class="waves-effect waves-light btn blue-grey modal-trigger">Dodaj stanowisko</a>
+            </div>
+        </div>
+        <div class="col s10 offset-s1">
+            <div class="process-table">
+                <table class="highlight bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Pracownik
+                            </th>
+                            <th ng-repeat="stanowisko in stanowiska">
+                                {{stanowisko.nazwaStanowiska}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pracownik in pracownicyWDziale">
+                            <td>
+                                <span class="strong">{{pracownik.imieNazwisko}}</span>
+                            </td>
+                            <td ng-repeat="ocenaKompetencji in pracownik.kompetencje" >
+                                <div class="progress-radial" ng-init="result = zaokraglijOcene(ocenaKompetencji.silaKompetencji)"  ng-class="{'progress-0':result === 0 , 'progress-25': result === 1, 'progress-50': result === 2, 'progress-75': result === 3, 'progress-100': result === 4 }">
+                                    <div class="overlay">
+                                        {{ocenaKompetencji.silaKompetencji * 4 | setDecimal:0}}
+                                        <a href="#editcompetencevalue" data-stanowisko="1" data-pracownik="1"  style="display: none;" class="modal-action modal-trigger">
+                                            <i class="material-icons" style="font-size: 20px; line-height: 3; color: #2f3439">edit</i>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> <!-- /process-table -->
+        </div> <!-- /col s10 -->
+    </div> <!-- /row -->
+    <!-- MODAL -->
+    <div id="add-worker" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj pracownika</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="col s12">
+                        <select class="position-select">
+                            <option value="" disabled selected>Wybierz stanowisko</option>
+                            <option value="1">Stanowisko 1</option>
+                            <option value="2">Stanowisko 2</option>
+                            <option value="3">Stanowisko 3</option>
+                            <option value="4">Stanowisko 4</option>
+                            <option value="5">Stanowisko 5</option>
+                            <option value="6">Stanowisko 6</option>
+                            <option value="7">Stanowisko 7</option>
+                        </select>
+                        <label>Wybór stanowiska</label>
+                    </div>
+                    <div class="col s12 workers-list hidden">
+                        <div class="workers-list-box">
+                            <input value="" name="worker" id="worker" class="hidden" />
+                            <ul class="collection">
+                                <li class="collection-item avatar">
+                                    <img src="images/leonardo_dicaprio.jpg" alt="" class="circle">
+                                    <span class="title">Imię Nazwisko</span>
+                                    <p>Stanowisko</p>
+                                    <span class="secondary-content competence-value">4</span>
+                                    <a href="#" data-worker-val="idpracownika1"></a>
+                                </li>
+                                <li class="collection-item avatar">
+                                    <img src="images/leonardo_dicaprio.jpg" alt="" class="circle">
+                                    <span class="title">Imię Nazwisko</span>
+                                    <p>Stanowisko</p>
+                                    <span class="secondary-content competence-value">3</span>
+                                    <a href="#" data-worker-val="idpracownika2"></a>
+                                </li>
+                                <li class="collection-item avatar">
+                                    <img src="images/leonardo_dicaprio.jpg" alt="" class="circle">
+                                    <span class="title">Imię Nazwisko</span>
+                                    <p>Stanowisko</p>
+                                    <span class="secondary-content competence-value">2</span>
+                                    <a href="#" data-worker-val="idpracownika3"></a>
+                                </li>
+                                <li class="collection-item avatar">
+                                    <img src="images/leonardo_dicaprio.jpg" alt="" class="circle">
+                                    <span class="title">Imię Nazwisko</span>
+                                    <p>Stanowisko</p>
+                                    <span class="secondary-content competence-value">1</span>
+                                    <a href="#" data-worker-val="idpracownika4"></a>
+                                </li>
+                                <li class="collection-item avatar">
+                                    <img src="images/leonardo_dicaprio.jpg" alt="" class="circle">
+                                    <span class="title">Imię Nazwisko</span>
+                                    <p>Stanowisko</p>
+                                    <span class="secondary-content competence-value">1</span>
+                                    <a href="#" data-worker-val="idpracownika5"></a>
+                                </li>
+                                <li class="collection-item avatar">
+                                    <img src="images/leonardo_dicaprio.jpg" alt="" class="circle">
+                                    <span class="title">Imię Nazwisko</span>
+                                    <p>Stanowisko</p>
+                                    <span class="secondary-content competence-value">1</span>
+                                    <a href="#" data-worker-val="idpracownika6"></a>
+                                </li>
+                            </ul>
+                        </div> <!-- /workers-list-box -->
+                    </div> <!-- /col s12 -->
+                </div> <!-- /col s6 -->
+                <div class="col s6">    
+                    <div class="worker-competences">
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                        <div class="element">
+                            <div class="name">Stanowisko 1</div>
+                            <span class="competence-value">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /row -->
+        </div> <!-- /modal-content -->
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in">Dodaj</a>
+        </div>
+    </div> <!-- /modal -->
+    <!-- /MODAL -->
+    
+    <!-- MODAL -->
+    <div id="add-position" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj stanowisko</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="col s12">
+                        <select class="position-select choose-position">
+                            <option value="" disabled selected>Wybierz stanowisko</option>
+                            <option value="1">Stanowisko 1</option>
+                            <option value="2">Stanowisko 2</option>
+                            <option value="3">Stanowisko 3</option>
+                            <option value="4">Stanowisko 4</option>
+                            <option value="5">Stanowisko 5</option>
+                            <option value="6">Stanowisko 6</option>
+                            <option value="7">Stanowisko 7</option>
+                        </select>
+                        <label>Wybierz stanowisko z listy</label>
+                    </div>
+                    <div class="input-field col s12 new-position">
+                        <input  id="section-name" type="text" class="validate" disabled>
+                        <label for="first_name">Dodaj nowe stanowisko</label>
+                    </div> <!-- /col s12 -->
+                </div> <!-- /col s6 -->
+                <div class="input-field col s6">    
+                    <div class="col s12">
+                        <select class="position-select choose-competence" disabled>
+                            <option value="" disabled selected>Wybierz kompetencje</option>
+                            <option value="1">Kompetencja 1</option>
+                            <option value="2">Kompetencja 1</option>
+                            <option value="3">Kompetencja 1</option>
+                            <option value="4">Kompetencja 1</option>
+                            <option value="5">Kompetencja 1</option>
+                            <option value="6">Kompetencja 1</option>
+                            <option value="7">Kompetencja 1</option>
+                        </select>
+                        <label>Wybór kompetencji stanowiskowej</label>
+                    </div>
+                </div>
+            </div> <!-- /row -->
+        </div> <!-- /modal-content -->
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in">Dodaj</a>
+        </div>
+    </div> <!-- /modal -->
+    <!-- /MODAL -->
+
+    <!-- ZMIANA 2 \/ -->
+    <!-- MODAL -->
+    <div id="editcompetencevalue" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Zmień wartość kompetencji:</h4>
+            <p>Aktualna wartość kompetencji *Nazwa kompetencji* dla *Nazwa pracownika* wynosi: *Wartość kompetencji*</p>
+            <div class="row">
+                <div class="col s10" input field>
+                    <select ng-model="nowaOcenaKompetencji" material-select watch class=" selectInput position-select choose-position">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Wybierz nową wartość dla kompetencji</label>
+                </div>
+                <div class="col s2">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"> 
+            <a class="waves-effect waves-light btn modal-action modal-close close grey">Anuluj</a>
+            <a class="waves-effect waves-light btn modal-action modal-close updatecompetencevalue">Zatwierdż</a>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    <!-- ZMIANA 2 /\ -->
+
+</div> <!-- /process -->
+<!-- /CONTENT -->

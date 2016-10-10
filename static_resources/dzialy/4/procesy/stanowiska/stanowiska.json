@@ -1,0 +1,17 @@
+[
+	{
+		"IDKomptenecja":
+			{
+				"id": 4, 
+				"nazwakompetencji": "Kompetencja4"
+			},
+		"IDProces":
+			{
+				"id":4,
+				"nazwaprocesu": "Proces4"
+			},
+		"id": 4,
+		"progWejscia": 0.6,
+		"stanowsiko": "Stanowisko4"
+	}
+]

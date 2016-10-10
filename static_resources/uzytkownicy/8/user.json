@@ -1,0 +1,12 @@
+[
+	{	
+		"id": 8,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy8",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	}
+]

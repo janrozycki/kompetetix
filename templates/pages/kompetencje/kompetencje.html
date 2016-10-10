@@ -1,0 +1,112 @@
+<!-- BREADCRUMBS -->
+    <div class="row dzialy">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3>Kompetencje</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->  
+<!-- CONTENT -->
+<div id="competences">
+    <div class="row boxes">
+        <div class="col s10 offset-s1">
+            <div class="row">
+                <div class="align-right" tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj nową kompetencję">
+                    <a modal href="#addnewcompetencemodal" class="btn-floating btn-large waves-effect waves-light dark-blue-bg add-new-competence"><i class="material-icons">add</i></a>
+                </div>
+                <div class="col s12">
+                    <div class="competences-list"></div>
+                </div>
+            </div>
+        </div> <!-- /col s10 -->
+    </div> <!-- /row -->
+    <!-- MODAL -->
+    <div id="show-tree" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div id="cy"></div>
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Wróć</a>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    <!-- MODAL -->
+    <div id="editmodal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Wróć</a>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    
+    <a class="waves-effect waves-light btn modal-trigger hidden" href="#addmodal"></a>
+    <!-- MODAL -->
+    <div id="addmodal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodawanie podkompetencji:</h4>
+            <p>Wybierz z listy kompetencje, która ma znaleść się pod wybraną kompetencją.</p>
+            <div class="row">
+                <div class="col s10">
+                    <div class="choose-competence input-field"></div>
+                </div>
+                <div class="col s2">
+                    <a class="waves-effect waves-light btn modal-action modal-close addcompetence">Dodaj</a>
+                </div>
+            </div>
+            <p>lub</p>
+            <p>Dodaj nową kompetencje. Wpisz nazwę:</p>
+            <div class="row">
+                <div class="col s10">
+                    <input name="competence-name" id="competence-name" />
+                </div>
+                <div class="col s2">
+                    <a class="waves-effect waves-light btn modal-action modal-close addnewcompetence">Dodaj</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close close grey">Wróć</a>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    
+    <!-- Alert modal trigger -->
+    <a class="waves-effect waves-light btn modal-trigger hidden" href="#alert"></a>
+    <!-- ALERT MODAL -->
+    <div id="alert" class="modal">
+        <div class="modal-content">
+            <h4>Uwaga!</h4>
+            <p>Czy jesteś pewien, że chcesz usunąć tę relacje? (wszystkie podkompetencje znajdujące się pod tą relacją również zostaną usunięte)</p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-light btn grey close">Wróć</a>
+            <a class="modal-action modal-close waves-effect waves-light btn accept">Kontynuuj</a>
+        </div>
+    </div>
+    <!-- /MODAL -->
+
+    <!-- MODAL -->
+    <div id="addnewcompetencemodal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj nową kompetencje.</h4>
+            <p>Wpisz nazwę:</p>
+            <div class="row">
+                <div class="col s10">
+                    <input name="new-competence-name" id="new-competence-name" />
+                </div>
+                <div class="col s2">
+                    <a class="waves-effect waves-light btn modal-action modal-close addnewcompetence">Dodaj</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close close grey">Wróć</a>
+        </div>
+    </div>
+    <!-- /MODAL -->
+    
+</div>
+<!-- /CONTENT -->

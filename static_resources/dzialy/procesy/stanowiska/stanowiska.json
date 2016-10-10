@@ -1,0 +1,62 @@
+[
+	{
+		"IDKomptenecja":
+			{
+				"id": 1, 
+				"nazwakompetencji": "Kompetencja1"
+			},
+		"IDProces":
+			{
+				"id":12,
+				"nazwaprocesu": "Proces1"
+			},
+		"id": 19,
+		"progWejscia": 0.6,
+		"stanowsiko": "Stanowisko1"
+	},
+	{
+		"IDKomptenecja":
+			{
+				"id": 2, 
+				"nazwakompetencji": "Kompetencja2"
+			},
+		"IDProces":
+			{
+				"id":11,
+				"nazwaprocesu": "Proces1"
+			},
+		"id": 20,
+		"progWejscia": 0.6,
+		"stanowsiko": "Stanowisko2"
+	},
+	{
+		"IDKomptenecja":
+			{
+				"id": 3, 
+				"nazwakompetencji": "Kompetencja3"
+			},
+		"IDProces":
+			{
+				"id":13,
+				"nazwaprocesu": "Proces3"
+			},
+		"id": 23,
+		"progWejscia": 0.6,
+		"stanowsiko": "Stanowisko3"
+	},
+	{
+		"IDKomptenecja":
+			{
+				"id": 4, 
+				"nazwakompetencji": "Kompetencja4"
+			},
+		"IDProces":
+			{
+				"id":14,
+				"nazwaprocesu": "Proces4"
+			},
+		"id": 24,
+		"progWejscia": 0.6,
+		"stanowsiko": "Stanowisko4"
+	}
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "id": 12,
+    "indexWProcesie": 1,
+    "kompetencja": {
+      "bazoweId": [],
+      "id": 15,
+      "nazwa": "Wiercenie otworów w ścianie1",
+      "rodzicId": [
+        17
+      ]
+    },
+    "nazwaStanowiska": "Stanowisko1",
+    "proces": {
+      "id": 11,
+      "maxLiczbaPracownikow": 14,
+      "nazwaProcesu": "Proces1",
+      "piorytet": 1
+    },
+    "progWejscia": 101
+  },
+  {
+    "id": 13,
+    "indexWProcesie": 2,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 16,
+      "nazwa": "Wiercenie otworów w ścianie2",
+      "rodzicId": []
+    },
+    "nazwaStanowiska": "Stanowisko2",
+    "proces": {
+      "id": 11,
+      "maxLiczbaPracownikow": 14,
+      "nazwaProcesu": "Proces1",
+      "piorytet": 1
+    },
+    "progWejscia": 99
+  },
+  {
+    "id": 14,
+    "indexWProcesie": 3,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 17,
+      "nazwa": "Wiercenie otworów w ścianie3",
+      "rodzicId": []
+    },
+    "nazwaStanowiska": "Stanowisko3",
+    "proces": {
+      "id": 11,
+      "maxLiczbaPracownikow": 14,
+      "nazwaProcesu": "Proces1",
+      "piorytet": 1
+    },
+    "progWejscia": 99
+  },
+  {
+    "id": 15,
+    "indexWProcesie": 4,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 18,
+      "nazwa": "Wiercenie otworów w ścianie4",
+      "rodzicId": []
+    },
+    "nazwaStanowiska": "Stanowisko4",
+    "proces": {
+      "id": 11,
+      "maxLiczbaPracownikow": 14,
+      "nazwaProcesu": "Proces1",
+      "piorytet": 1
+    },
+    "progWejscia": 99
+  },
+  {
+    "id": 16,
+    "indexWProcesie": 5,
+    "kompetencja": {
+      "bazoweId": [
+        15,
+        16
+      ],
+      "id": 19,
+      "nazwa": "Wiercenie otworów w ścianie5",
+      "rodzicId": []
+    },
+    "nazwaStanowiska": "Stanowisko5",
+    "proces": {
+      "id": 11,
+      "maxLiczbaPracownikow": 14,
+      "nazwaProcesu": "Proces1",
+      "piorytet": 1
+    },
+    "progWejscia": 99
+  }
+]

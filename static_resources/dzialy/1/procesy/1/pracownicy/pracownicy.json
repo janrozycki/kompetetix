@@ -1,0 +1,66 @@
+[
+	{	
+		"id": 1,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy1",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik",
+		"kompetencje": {
+			"1": 0.3453,
+			"2": 0.5035,
+			"3": 0.8453,
+			"4": 0.7468
+		}
+	},
+	{	
+		"id": 2,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy2",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik",
+		"kompetencje": {
+			"1": 0.7453,
+			"2": 0.7535,
+			"3": 1.0000,
+			"4": 0.2468
+		}
+	},
+	{	
+		"id": 3,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy3",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik",
+		"kompetencje": {
+			"1": 0.8453,
+			"2": 0.3635,
+			"3": 0.2853,
+			"4": 0.2668
+		}
+	},
+	{	
+		"id": 4,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy4",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik",
+		"kompetencje": {
+			"1": 0.4453,
+			"2": 0.1235,
+			"3": 0.8253,
+			"4": 0.4668
+		}
+	}
+]

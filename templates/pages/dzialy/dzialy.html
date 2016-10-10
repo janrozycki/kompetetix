@@ -1,0 +1,77 @@
+<!-- BREADCRUMBS -->
+    <div class="row dzialy">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3>Działy</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->
+<!-- CONTENT -->   
+<div id="departments">
+    <div class="row boxes departments">
+        <div class="col s10 offset-s1">
+            <div class="align-right" tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj dział">
+                <a href="#add-department" modal class="btn-floating btn-large waves-effect waves-light dark-blue-bg"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+        <div class="col s10 offset-s1">
+            <div class="row" >
+                <div class="col s6 m3" ng-repeat="dzial in dzialy">
+                    <div class="card white hoverable">
+                        <div class="card-content black-text">
+                            <span class="card-title">{{dzial.nazwaDzialu}}</span>
+                            <p>Liczba procesów: <span>{{dzial.liczbaprocesow}}</span></p>
+                            <p>Liczba pracowników: <span>{{dzial.liczbapracownikow}}</span></p>
+                            <p>Liczba stanowisk: <span>{{dzial.liczbastanowisk}}</span></p>
+                        </div>
+                        <div class="card-action">
+                            <a ng-href="#/dzial/{{dzial.id}}">Przejdź do działu ≫</a>
+                        </div>
+                    </div>
+                </div>                      
+            </div> <!-- /row -->
+        </div> <!-- /col s10 -->  
+    </div> <!-- /row -->
+    
+    <!-- MODAL -->
+    <div id="add-department" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj dział produkcyjny</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input  id="nazwaDzialu" type="text" class="validate textInput" ng-model="nazwaNowegoDzialu">
+                    <label for="nazwaDzialu">Nazwa działu</label>
+                </div>
+                <div class="col s12 input-field">
+                    <select class="selectInput" ng-model="procesyNowegoDzialu" material-select multiple watch>
+                        <option disabled>Lista dostępnych procesów</option>
+                        <option ng-repeat="proces in wszystkieProcesy" value="{{proces.id}}">{{proces.nazwaProcesu}}</option>
+                    </select>
+                    <label>Wybór processsów</label>
+                </div>
+            </div> <!-- /row -->
+        </div> <!-- /modal-content -->
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey close">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in" ng-click="dodajDzial()">Dodaj</button>
+        </div>
+    </div> <!-- /modal -->
+    <!-- /MODAL -->
+</div> <!-- /departments -->
+<!-- /CONTENT -->
+
+<!--single select example 
+    <div input-field class="col s6">
+        <select ng-model="dzialNowegoPracownika" material-select watch>
+            <option value="" selected >Wybierz procesy</option>
+            <option value="1">Proces pierwszy</option>
+            <option value="2">Proces drugi</option>
+            <option value="3">Proces trzeci</option>
+            <option value="4">Proces czwarty</option>
+            <option value="5">Proces piąty</option>
+            <option value="6">Proces szósty</option>
+            <option value="7">Proces siódmy</option>
+        </select>
+        <label>Wybór processsów</label>
+    </div>-->

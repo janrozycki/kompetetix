@@ -1,0 +1,61 @@
+<!-- BREADCRUMBS -->
+    <div class="row dzialy">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3>Pracownicy</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->  
+<!-- CONTENT -->
+<div id="workers">
+    <div class="row boxes">
+        <div class="col s10 offset-s1">
+            <div class="align-right" tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj pracownika">
+                <a modal href="#addWorker" class="btn-floating btn-large waves-effect waves-light dark-blue-bg" ><i class="material-icons">add</i></a>
+            </div>
+        </div>
+        <div class="col s10 offset-s1">
+            <div class="row workers">
+                <div class="col s2" ng-repeat="pracownik in pracownicy">
+                    <div class="card small hoverable">
+                        <div class="card-image">
+                            <a ng-href="#/pracownik/{{pracownik.id}}" tooltipped class="edit" data-position="top" data-delay="50" data-tooltip="Podgląd"><i class="material-icons right">more_vert</i></a>
+                            <img src="images/avatar-default.png">
+                            <span class="card-title">{{pracownik.imie}} {{pracownik.nazwisko}}<span>{{pracownik.dzialy[0].nazwaDzialu}}</span></span>
+                        </div>
+                    </div>
+                </div>                                         
+            </div> <!-- /row -->
+        </div> <!-- /col s10 -->
+    </div> <!-- /row -->
+    <!-- MODAL -->
+    <div id="addWorker" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj pracownika</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input  id="section-name" type="text" class="validate textInput" ng-model="imieNowegoPracownika">
+                    <label for="section-name">Imię</label>
+                </div>
+                <div class="input-field col s6">
+                    <input  id="section-second-name" type="text" class="validate textInput" ng-model="nazwiskoNowegoPracownika">
+                    <label for="section-second-name">Nazwisko</label>
+                </div>
+                <div class="col s12 input-field">
+                    <select ng-model="dzialyNowegoPracownika" material-select multiple class="selectInput" id="select_dzialy">
+                        <option disabled>Lista dostepnych działów</option>
+                        <option ng-repeat="dzial in wszystkieDzialy" class="optionInput" value="{{dzial.id}}">{{dzial.nazwaDzialu}}</option>
+                    </select>
+                    <label>Wybierz dział(y) dla nowego pracownika</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in" ng-click="dodajPracownika()">Dodaj</button>
+        </div>
+    </div>
+    <!-- /MODAL -->
+</div> <!-- /workers -->
+<!-- /CONTENT -->

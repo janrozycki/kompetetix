@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"nazwaKompetencji": "Kompetencja1"
+	},
+	{
+		"id": 2,
+		"nazwaKompetencji": "Kompetencja2"
+	},
+	{
+		"id": 3,
+		"nazwaKompetencji": "Kompetencja3"
+	},
+	{
+		"id": 4,
+		"nazwaKompetencji": "Kompetencja4"
+	},
+	{
+		"id": 5,
+		"nazwaKompetencji": "Kompetencja5"
+	},
+	{
+		"id": 6,
+		"nazwaKompetencji": "Kompetencja6"
+	},
+	{
+		"id": 7,
+		"nazwaKompetencji": "Kompetencja7"
+	},
+	{
+		"id": 8,
+		"nazwaKompetencji": "Kompetencja8"
+	},
+	{
+		"id": 9,
+		"nazwaKompetencji": "Kompetencja9"
+	}
+]

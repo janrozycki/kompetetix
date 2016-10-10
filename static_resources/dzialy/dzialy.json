@@ -1,0 +1,58 @@
+[
+	{
+		"id": "1",
+		"nazwaDzialu": "dział1",
+		"liczbaPracownikow": 12,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "2",
+		"nazwaDzialu": "dział2",
+		"liczbaPracownikow": 13,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "3",
+		"nazwaDzialu": "dział3",
+		"liczbaPracownikow": 10,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "4",
+		"nazwaDzialu": "dział4",
+		"liczbaPracownikow": 3,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "5",
+		"nazwaDzialu": "dział5",
+		"liczbaPracownikow": 2,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "6",
+		"nazwaDzialu": "dział6",
+		"liczbaPracownikow": 5,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "7",
+		"nazwaDzialu": "dział7",
+		"liczbaPracownikow": 23,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	},
+	{
+		"id": "8",
+		"nazwaDzialu": "dział8",
+		"liczbaPracownikow": 4,
+		"liczbaStanowisk": 4,
+		"liczbaProcesow": 2
+	}
+]

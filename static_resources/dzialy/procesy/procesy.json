@@ -1,0 +1,67 @@
+[
+	{
+		"id": 1,
+		"nazwaProcesu": "Proces1",
+		"opis": "To jest proces1",
+		"optymalnaLiczbaPrac": 10,
+		"priorytet": "niski"
+	},
+	{
+		"id": 2,
+		"nazwaProcesu": "Proces2",
+		"opis": "To jest proces2",
+		"optymalnaLiczbaPrac": 18,
+		"priorytet": "wysoki"
+	},
+	{
+		"id": 3,
+		"nazwaProcesu": "Proces3",
+		"opis": "To jest proces3",
+		"optymalnaLiczbaPrac": 16,
+		"priorytet": "średni"
+
+	},
+	{
+		"id": 4,
+		"nazwaProcesu": "Proces4",
+		"opis": "To jest proces4",
+		"optymalnaLiczbaPrac": 5,
+		"priorytet": "wysoki"
+	},
+	{
+		"id": 5,
+		"nazwaProcesu": "Proces5",
+		"opis": "To jest proces5",
+		"optymalnaLiczbaPrac": 34,
+		"priorytet": "niski"
+	},
+	{
+		"id": 6,
+		"nazwaProcesu": "Proces6",
+		"opis": "To jest proces6",
+		"optymalnaLiczbaPrac": 10,
+		"priorytet": "niski"
+	},
+	{
+		"id": 7,
+		"nazwaProcesu": "Proces7",
+		"opis": "To jest proces7",
+		"optymalnaLiczbaPrac": 18,
+		"priorytet": "wysoki"
+	},
+	{
+		"id": 8,
+		"nazwaProcesu": "Proces8",
+		"opis": "To jest proces8",
+		"optymalnaLiczbaPrac": 16,
+		"priorytet": "średni"
+
+	},
+	{
+		"id": 9,
+		"nazwaProcesu": "Proces9",
+		"opis": "To jest proces9",
+		"optymalnaLiczbaPrac": 5,
+		"priorytet": "wysoki"
+	}
+]

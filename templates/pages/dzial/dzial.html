@@ -1,0 +1,59 @@
+<!-- BREADCRUMBS -->
+    <div class="row dzialy">
+        <div class="col s10 offset-s1">
+            <div class="workspace-name">
+                <h3><a href="dzialy.html">Działy</a> > {{dzial.nazwaDzialu}}</h3>
+            </div>
+        </div>
+    </div>
+<!-- /BREADCRUMBS -->
+<!-- CONTENT -->
+<div id="department">
+    <div class="row boxes departments">
+        <div class="col s10 offset-s1">
+             <div class="align-right" tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj proces">
+                <a href="#add-process" modal class="btn-floating btn-large waves-effect waves-light dark-blue-bg"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+        <div class="col s10 offset-s1">
+            <div class="row">
+                <div class="col s6 m3" ng-repeat="proces in procesy">
+                    <div class="card white hoverable">
+                        <div class="card-content black-text">
+                            <span class="card-title">{{proces.nazwaProcesu}}</span>
+                            <p>Średnia kompetencji: <span>{{proces.sredniaKompetencji | setDecimal:2}}</span></p>
+                            <p>Liczba pracowników: <span>{{proces.liczbaPracownikow}}</span></p>
+                            <p>Liczba stanowisk: <span>{{proces.liczbaStanowisk}}</span></p>
+                        </div>
+                    <div class="card-action">
+                      <a ng-href="#/dzial/{{dzial.id}}/proces/{{proces.id}}">Idź do procesu ≫</a>
+                    </div>
+                  </div>
+                </div>                      
+            </div> <!-- /row -->
+        </div> <!-- /col s10 -->   
+    </div> <!-- /row -->
+    <!-- MODAL -->
+    <div id="add-process" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dodaj proces</h4>
+            <div class="row" id="noweProcesyForm">
+                <div class="input-field col s10">
+                    <input ng-model="nowyProces_1" id="section-name" type="text" class="validate">
+                    <label for="first_name">Nazwa procesu</label>
+                </div>
+                <!--<div class="col s1">
+                     <div ng-show="inputLimit" class="align-right" ng-click="dodajKolejnyProces()" tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj kolejny proces">
+                        <a class="btn-floating btn-large waves-effect waves-light dark-blue-bg"><i class="material-icons">add</i></a>
+                    </div>
+                </div>-->                
+            </div> <!-- /row -->
+        </div> <!-- /modal-content -->
+        <div class="modal-footer">            
+            <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
+            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in" ng-click="dodajProcesDoDzialu()">Dodaj</a>
+        </div>
+    </div> <!-- /modal -->
+    <!-- /MODAL -->
+</div> <!-- /department -->
+<!-- /CONTENT -->

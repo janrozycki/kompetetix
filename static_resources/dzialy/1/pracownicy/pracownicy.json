@@ -1,0 +1,102 @@
+[
+	{	
+		"id": 1,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy1",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 2,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy2",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 3,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy3",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 4,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy4",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 5,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy5",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 6,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy6",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 7,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy7",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 8,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy8",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 9,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy9",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	},
+	{	
+		"id": 10,
+		"email": "panTestowy@test.com",
+		"haslo": "qwerty12345678",
+		"imie": "Pan",
+		"nazwisko": "Testowy10",
+		"notatki": "nazywam sie Pan Testowy",
+		"sciezka": "/to/jest/sciezka",
+		"typOsoby": "pracownik"
+	}
+]
