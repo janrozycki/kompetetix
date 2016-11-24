@@ -1,6 +1,10 @@
 $(document).ready(function(){
     // Smooth fade in on site load
-    $(".row").fadeIn(500);   
+    $(".row").fadeIn(500);
+
+    Array.prototype.diff = function(a) {
+        return this.filter(function(i) {return a.indexOf(i) < 0;});
+    };   
     
     // Left menu slide
     $(".menu-left").on({

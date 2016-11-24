@@ -26,9 +26,11 @@ angular.module('MortApp.dzialy', ['ngRoute'])
         $('#add-department').closeModal();
     };
     $scope.dodajDzial = function(){
-        var procesyDoWyslania = []
-        for (var i = 0; i < $scope.procesyNowegoDzialu.length; i++) {
-            procesyDoWyslania.push({"id": $scope.procesyNowegoDzialu[i]})
+        if($scope.procesyNowegoDzialu){
+            var procesyDoWyslania = []
+            for (var i = 0; i < $scope.procesyNowegoDzialu.length; i++) {
+                procesyDoWyslania.push({"id": $scope.procesyNowegoDzialu[i]})
+            }
         }
         $scope.procesyDoWyslania = procesyDoWyslania;
         $http({
@@ -43,8 +45,12 @@ angular.module('MortApp.dzialy', ['ngRoute'])
             $scope.reRender();
         });
     }
-	$http({method: 'GET', url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy'}).success(function(response){
+	$http({
+        method: 'GET',
+        url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy'
+    }).success(function(response){
 		$scope.dzialy = response;
+        console.log($scope.dzialy)
         
         for(var i = 0; i < $scope.dzialy.length; i++) {
             $scope.dzialy_ids_array.push($scope.dzialy[i].id);

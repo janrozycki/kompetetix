@@ -654,3 +654,18 @@ body {
     z-index: 999;
     display: block;
 }
+#competenceValue{
+  background-color: #333;
+  color: white;
+  padding:2px 4px;
+  border-radius: 4px;
+}
+.chips > .stanowisko{
+  margin-left: 18px;
+}
+.edit-competence-icon{
+  color: #333;
+}
+.edit-competence-icon:hover{
+  color: #eee;
+}

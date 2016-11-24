@@ -7,10 +7,17 @@ angular.module('MortApp.dzial', ['ngRoute'])
   });
 }])
 
-.controller('dzialCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+.controller('dzialCtrl', ['$scope', '$http', '$routeParams', '$route', function($scope, $http, $routeParams, $route) {
 
     $scope.inputLimit = true;
     $scope.inputCounter = 1;
+
+    $scope.reRender = function(){
+        $route.reload();
+    };
+    $scope.hideModal = function(){
+        $('#add-process').closeModal();
+    };
 
     $scope.dodajKolejnyProces = function(){ 
         var inputNumber = $scope.inputCounter + 1;
@@ -22,6 +29,10 @@ angular.module('MortApp.dzial', ['ngRoute'])
     };
 
     $scope.dodajProcesDoDzialu = function(){
+        // jak dodać kilka procesów na raz????
+        // for (var i = 0; i < $scope.inputCounter; i++){
+        //     if 
+        // }
         $http({
             method: 'POST', 
             url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/procesy',
@@ -31,6 +42,7 @@ angular.module('MortApp.dzial', ['ngRoute'])
         }).success(function(response){
             var idNowegoProcesu = parseInt(response);
             var liczbaProcesowWDziale = $scope.dzial.procesy.length;
+            var nazwaDzialu = $scope.dzial.nazwaDzialu;
             var IdprocesowWDziale = [];
             if(liczbaProcesowWDziale > 0){
                 for (var i = 0; i < liczbaProcesowWDziale; i++){
@@ -44,10 +56,13 @@ angular.module('MortApp.dzial', ['ngRoute'])
                 url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $routeParams.id,
                 data: {
                     "id": $routeParams.id,
+                    "nazwaDzialu": nazwaDzialu,
                     "procesy": IdprocesowWDziale
                 }
             }).success(function(response){
-                console.log("Dodano proces do dzialu");
+                $scope.hideModal();
+                $scope.reRender();
+                console.log("nowy kod2 dziala")
             });
 
         });

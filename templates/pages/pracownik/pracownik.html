@@ -15,7 +15,7 @@
                 <div class="col s9">
                     <div class="align-right">
                         <span tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj kompetencję">
-                            <a ng-click="pobierzWszystkieKompetencje()" modal href="#addworkercompetence" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+                            <a modal href="#addworkercompetence" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
                         </span>
                         <span tooltipped data-position="left" data-delay="50" data-tooltip="Edytuj kompetencje" ng-click="toggleEditMode()">
                             <a class="btn-floating btn-large waves-effect waves-light dark-blue-bg" ><i class="material-icons">edit</i></a>
@@ -29,11 +29,15 @@
 
                     <div class="chips">
                         <h5>Kompetencje:</h5>
-                        <div class="chip stanowisko" ng-repeat="kompetencja in kompetencje">
-                            {{kompetencja.kompetencja.nazwa}} || {{kompetencja.silaKompetencji}}
-                            <a modal href="#editworkercompetence" class="modal-trigger"  style="color: #333;"><i class="material-icons">edit</i></a>
+                        <div ng-show="! czyBrakKompetencji" class="chip stanowisko" ng-repeat="kompetencja in kompetencje">
+                            {{kompetencja.kompetencja.nazwa}} <span id="competenceValue">{{kompetencja.silaKompetencji}}</span>
+                            <a modal href="#editworkercompetence" class="modal-trigger edit-competence-icon" ><i class="material-icons">edit</i></a>
+                        </div>
+                        <div ng-show="czyBrakKompetencji">
+                            Ten pracownik nie ma jeszcze żadnych kompetencji.
                         </div>
                     </div>
+
                 </div>                      
                 <div class="col s3">
                     <div class="card small">
@@ -53,16 +57,14 @@
             <h4>Dodaj kompetencje</h4>
             <div class="row">
 
-                <div class="col s10 input-field">
-                    <select ng-model="nowaKompetencjaPracownika" material-select class="selectInput position-select choose-competence">
-                        <option ng-repeat="kompetencja in wszystkieKompetencje" value="{{kompetencja.id}}">{{kompetencja.nazwa}}</option>
+                <div class="col s12 input-field">
+                    <select class="selectInput position-select choose-competence" ng-model="nowaKompetencjaPracownika" material-select watch>
+                        <option ng-repeat="kompetencja in dostepneKompetencje" value="{{kompetencja.id}}">{{kompetencja.nazwa}}</option>
                     </select>
                     <label>Wybierz kompetencję</label>
                 </div>
-                <div class="input-field col s2">
-                </div>
 
-                <div class="col s10 input-field">
+                <div class="col s12 input-field">
                     <select ng-model="ocenaNowejKompetencji" material-select watch class="select-input position-select choose-position">
                         <option value="0">0</option>
                         <option value="1">1</option>

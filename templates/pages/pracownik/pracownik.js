@@ -7,8 +7,10 @@ angular.module('MortApp.pracownik', ['ngRoute'])
   });
 }])
 
-.controller('pracownikCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+.controller('pracownikCtrl', ['$scope', '$http', '$routeParams', '$route', function($scope, $http, $routeParams, $route) {
+    $scope.czyBrakKompetencji = false;
     $scope.editMode = false;
+
     $scope.toggleEditMode = function() {
         if($scope.editMode === false) {
             $scope.editMode = true;
@@ -16,18 +18,83 @@ angular.module('MortApp.pracownik', ['ngRoute'])
             $scope.editMode = false;
         }
     };
-    $scope.pobierzWszystkieKompetencje = function(){
+
+    // funkcja która re-renderuje całą stronę
+    $scope.reRender = function(){
+        $route.reload();
+    };
+    $scope.hideModal = function(modalID){
+        $(modalID).closeModal();
+    };
+
+    $scope.GET_wszystkieKompetencje = function(){
         $http({
             method: 'GET',
             url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/kompetencje'
         }).success(function(response){
             $scope.wszystkieKompetencje = response;
+
+            // zapisuję id'ki wszystkich kompetencji danego pracownika do jednej listy
+            var idKompetencjiPracownika = []
+            for (var i = 0; i < $scope.kompetencje.length; i++){
+                idKompetencjiPracownika.push($scope.kompetencje[i].kompetencja.id);
+            }
+
+            $scope.dostepneKompetencje = [];
+            for (var i = 0; i < $scope.wszystkieKompetencje.length; i++){
+                if (idKompetencjiPracownika.indexOf($scope.wszystkieKompetencje[i].id) == -1){
+                    $scope.dostepneKompetencje.push($scope.wszystkieKompetencje[i]);
+                }
+            }
         });
     };
 
+    $scope.GET_dane_pracownika = function(){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id 
+        }).success(function(response){
+            $scope.pracownik = response;
+            /*
+            var dzialyPracownika = []
+            var nazwyDzialowPracownika = []
+            for(var i = 0; i < $scope.pracownik.dzialy.length; i++){
+                dzialyPracownika.push($scope.pracownik.dzialy[i].id)
+                $http({
+                    method: 'GET',
+                    url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $scope.pracownik.dzialy[i].id
+                }).success(function(response){
+                    nazwyDzialowPracownika.push(response.nazwaDzialu)
+                    console.log(response) 
+                }); 
+            } 
+            */
+        });
+    };
+
+    $scope.GET_kompetencjePracownika = function(callback){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id + '/silykompetencji'
+        }).success(function(response){
+            $scope.kompetencje = response;
+            if(response.length == 0){
+                $scope.czyBrakKompetencji = true;
+            }
+            callback();
+        });
+    };
+
+    $scope.GET_dzialyPracownika = function(){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id + '/dzialy'
+        }).success(function(response){
+            $scope.dzialyPracownika = response;
+        }); 
+    };
+
     $scope.dodajPracownikowiKompetencje = function(){
-        console.log($scope.nowaKompetencjaPracownika);
-        console.log($scope.ocenaNowejKompetencji);
         $http({
             method: 'POST',
             url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/silykompetencji',
@@ -42,51 +109,11 @@ angular.module('MortApp.pracownik', ['ngRoute'])
                     "silaKompetencji": $scope.ocenaNowejKompetencji
                 }
         }).success(function(response){
-           console.log($scope.nowaKompetencjaPracownika);
-           console.log($scope.ocenaNowejKompetencji);
+            $scope.hideModal('#addworkercompetence');
+            $scope.reRender();
         });
     };
 
-
-
-
-
-
-        
-
-
-	$http({
-		method: 'GET',
-		url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id 
-	}).success(function(response){
-		$scope.pracownik = response;
-        /*
-        var dzialyPracownika = []
-        var nazwyDzialowPracownika = []
-        for(var i = 0; i < $scope.pracownik.dzialy.length; i++){
-            dzialyPracownika.push($scope.pracownik.dzialy[i].id)
-            $http({
-                method: 'GET',
-                url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $scope.pracownik.dzialy[i].id
-            }).success(function(response){
-                nazwyDzialowPracownika.push(response.nazwaDzialu)
-                console.log(response) 
-            }); 
-        } 
-        */
-	});
-    $http({
-        method: 'GET',
-        url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id + '/silykompetencji'
-    }).success(function(response){
-        $scope.kompetencje = response;
-    });
-    $http({
-        method: 'GET',
-        url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id + '/dzialy'
-    }).success(function(response){
-        $scope.dzialyPracownika = response;
-    }); 
     $scope.usunPracownika =function(){
         $http({
             method: 'DELETE',
@@ -94,5 +121,10 @@ angular.module('MortApp.pracownik', ['ngRoute'])
         }).success(function(response){
             console.log(response);
         });
-    }
+    };
+
+    $scope.GET_dane_pracownika();
+    $scope.GET_dzialyPracownika();
+    $scope.GET_kompetencjePracownika($scope.GET_wszystkieKompetencje);
+
 }]);

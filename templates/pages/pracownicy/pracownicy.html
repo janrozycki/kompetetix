@@ -34,21 +34,25 @@
         <div class="modal-content">
             <h4>Dodaj pracownika</h4>
             <div class="row">
+
                 <div class="input-field col s6">
                     <input  id="section-name" type="text" class="validate textInput" ng-model="imieNowegoPracownika">
                     <label for="section-name">Imię</label>
                 </div>
+
                 <div class="input-field col s6">
                     <input  id="section-second-name" type="text" class="validate textInput" ng-model="nazwiskoNowegoPracownika">
                     <label for="section-second-name">Nazwisko</label>
                 </div>
+
                 <div class="col s12 input-field">
-                    <select ng-model="dzialyNowegoPracownika" material-select multiple class="selectInput" id="select_dzialy">
+                    <select class="selectInput" ng-model="dzialyNowegoPracownika" material-select multiple watch id="select_dzialy">
                         <option disabled>Lista dostepnych działów</option>
-                        <option ng-repeat="dzial in wszystkieDzialy" class="optionInput" value="{{dzial.id}}">{{dzial.nazwaDzialu}}</option>
+                        <option ng-repeat="dzial in wszystkieDzialy" value="{{dzial.id}}">{{dzial.nazwaDzialu}}</option>
                     </select>
                     <label>Wybierz dział(y) dla nowego pracownika</label>
                 </div>
+
             </div>
         </div>
         <div class="modal-footer">            

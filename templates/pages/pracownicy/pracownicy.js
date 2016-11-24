@@ -23,6 +23,11 @@ angular.module('MortApp.pracownicy', ['ngRoute'])
             $scope.pracownicy = response;
         });
     };
+    $scope.GET_wszystkieDzialy = function(){
+        $http({method: 'GET', url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy'}).success(function(response){
+            $scope.wszystkieDzialy = response;
+        });
+    }
        
     $scope.dodajPracownika = function(){
         var dzialyDoWyslania = []
@@ -45,11 +50,7 @@ angular.module('MortApp.pracownicy', ['ngRoute'])
     };
 
     $scope.GET_wszyscyPracownicy();
-	
-    $http({method: 'GET', url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy'}).success(function(response){
-        $scope.wszystkieDzialy = response;
-    });
-    $scope.dzialyNowegoPracownika = []
+	$scope.GET_wszystkieDzialy();
 
     
 }]);
