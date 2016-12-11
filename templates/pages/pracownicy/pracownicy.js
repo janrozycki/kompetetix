@@ -44,6 +44,7 @@ angular.module('MortApp.pracownicy', ['ngRoute'])
                 "nazwisko" : $scope.nazwiskoNowegoPracownika 
             }
         }).success(function(response){
+            console.log(response);
             $scope.hideModal();
             $scope.reRender();
         });

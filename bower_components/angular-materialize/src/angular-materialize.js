@@ -1,6 +1,6 @@
 (function (angular) {
     var undefined;
-    angular.module("ui.materialize", ["ui.materialize.ngModel", "ui.materialize.collapsible", "ui.materialize.toast", "ui.materialize.sidenav", "ui.materialize.material_select", "ui.materialize.dropdown", "ui.materialize.inputfield", "ui.materialize.input_date", "ui.materialize.tabs", "ui.materialize.pagination", "ui.materialize.pushpin", "ui.materialize.scrollspy", "ui.materialize.parallax","ui.materialize.modal", "ui.materialize.tooltipped",  "ui.materialize.slider", "ui.materialize.materialboxed", "ui.materialize.scrollFire", "ui.materialize.nouislider", "ui.materialize.input_clock"]);
+    angular.module("ui.materialize", ["ui.materialize.ngModel", "ui.materialize.collapsible", "ui.materialize.toast", "ui.materialize.sidenav", "ui.materialize.material_select", "ui.materialize.dropdown", "ui.materialize.inputfield", "ui.materialize.input_date", "ui.materialize.tabs", "ui.materialize.pagination", "ui.materialize.pushpin", "ui.materialize.scrollspy", "ui.materialize.parallax","ui.materialize.modal", "ui.materialize.tooltipped",  "ui.materialize.slider", "ui.materialize.materialboxed", "ui.materialize.scrollFire", "ui.materialize.nouislider", "ui.materialize.input_clock", "ui.materialize.carousel"]);
 
     /*     example usage:
      <div scroll-fire="func('Scrolled', 2000)" ></scroll-fire>
@@ -23,16 +23,12 @@
 
                     var fired = false;
                     var handler = throttle(function () {
-                        console.log("Handler");
                         if (fired) {
                             return;
                         }
                         var windowScroll = window.pageYOffset + window.innerHeight;
 
                         var elementOffset = element[0].getBoundingClientRect().top + window.pageYOffset;
-
-                        console.log(typeof offset);
-                        console.log((windowScroll - (elementOffset + offset)) + " left");
 
                         if (windowScroll > (elementOffset + offset)) {
                             fired = true;
@@ -147,6 +143,41 @@
             };
         }]);
 
+    /* example usage:
+     <div carousel height='500' transition='400'></div>
+     */
+    angular.module("ui.materialize.carousel", [])
+        .directive("carousel", ["$timeout", function($timeout){
+            return {
+                restrict: 'A',
+                scope: {
+                    timeConstant: '@',
+                    dist: '@',
+                    shift: '@',
+                    padding: '@',
+                    fullWidth: '@',
+                    indicators: '@',
+                    noWrap: '@'
+                },
+                link: function(scope, element, attrs) {
+                    element.addClass("carousel");
+
+                    $timeout(function(){
+                        element.carousel({
+                            time_constant: (angular.isDefined(scope.timeConstant)) ? scope.timeConstant : 200,
+                            dist: (angular.isDefined(scope.dist)) ? scope.dist : -100,
+                            shift: (angular.isDefined(scope.shift)) ? scope.shift : 0,
+                            padding: (angular.isDefined(scope.padding)) ? scope.padding : 0,
+                            full_width: (angular.isDefined(scope.fullWidth)) ? scope.fullWidth : false,
+                            indicators: (angular.isDefined(scope.indicators)) ? scope.indicators : false,
+                            no_wrap: (angular.isDefined(scope.noWrap)) ? scope.noWrap : false
+                        });
+                    });
+                }
+            };
+        }]);
+
+
 
     angular.module("ui.materialize.collapsible", [])
         .directive("collapsible", ["$timeout", function ($timeout) {
@@ -238,16 +269,26 @@
         }]);
 
     angular.module("ui.materialize.tabs", [])
-        .directive("tabs", ["$timeout", function($timeout){
-            return {
-                link: function (scope, element, attrs) {
-                    element.addClass("tabs");
-                    $timeout(function() {
-                        element.tabs();
-                    });
-                }
-            };
-        }]);
+      .directive("tabs", ["$timeout", function($timeout){
+          return {
+              scope: {
+                  reload: '='
+              },
+              link: function (scope, element, attrs) {
+                  element.addClass("tabs");
+                  $timeout(function() {
+                      element.tabs();
+                  });
+
+                  scope.$watch('reload', function(newValue) {
+                      if (newValue === true) {
+                          element.tabs();
+                          scope.reload = false;
+                      }
+                  });
+              }
+          };
+      }]);
 
     // Example: <a href="#" data-activates="nav-mobile" class="button-collapse top-nav" data-sidenav="left" data-menuwidth="500"  data-closeonclick="true">
     // data-activates is handled by the jQuery plugin.
@@ -275,12 +316,12 @@
                 link: function (scope, element, attrs) {
                     if (element.is("select")) {
 						//BugFix 139: In case of multiple enabled. Avoid the circular looping.
-                        function initSelect(newVal, oldVal) {                            
-                            if(attrs.multiple){
-                                if(oldVal !== undefined && newVal !== undefined){
-                                  if(oldVal.length === newVal.length){
-                                      return;
-                                  }
+                        function initSelect(newVal, oldVal) {
+                            if (attrs.multiple) {
+                                if (oldVal !== undefined && newVal !== undefined) {
+                                    if (oldVal.length === newVal.length) {
+                                        return;
+                                    }
                                 }
                                 var activeUl = element.siblings("ul.active");
                                 if (newVal !== undefined && activeUl.length) { // If select is open
@@ -289,25 +330,51 @@
                                         return;
                                     }
                                 }
-                            } else {
-                                if (newVal == element.val()){
-                                    return;
-                                }
                             }
+
                             element.siblings(".caret").remove();
-                            scope.$evalAsync(function() {
-                              element.material_select();
+                            scope.$evalAsync(function () {
+                                //element.material_select();
+                                //Lines 301-311 fix Dogfalo/materialize/issues/901 and should be removed and the above uncommented whenever 901 is fixed
+                                element.material_select(function () {
+                                    if (!attrs.multiple) {
+                                        $('input.select-dropdown').trigger('close');
+                                    }
+                                });
+                                var onMouseDown = function (e) {
+                                    // preventing the default still allows the scroll, but blocks the blur.
+                                    // We're inside the scrollbar if the clientX is >= the clientWidth.
+                                    if (e.clientX >= e.target.clientWidth || e.clientY >= e.target.clientHeight) {
+                                        e.preventDefault();
+                                    }
+                                };
+                                element.siblings('input.select-dropdown').on('mousedown', onMouseDown);
                             });
                         }
                         $timeout(initSelect);
                         if (attrs.ngModel) {
-                            scope.$watch(attrs.ngModel, initSelect);
+
+                            if (attrs.ngModel && !angular.isDefined(scope.$eval(attrs.ngModel))) {
+                                // This whole thing fixes that if initialized with undefined, then a ghost value option is inserted. If this thing wasn't done, then adding the 'watch' attribute could also fix it. #160
+                                var hasChangedFromUndefined = false;
+                                scope.$watch(attrs.ngModel, function (newVal, oldVal) {
+                                    if (!hasChangedFromUndefined && angular.isDefined(scope.$eval(attrs.ngModel))) {
+                                        hasChangedFromUndefined = true;
+                                        initSelect(); // initSelect without arguments forces it to actually run. 
+                                    } else {
+                                        initSelect(newVal, oldVal);
+                                    }
+                                });
+                            } else {
+                                scope.$watch(attrs.ngModel, initSelect);
+                            }
+
                         }
                         if ("watch" in attrs) {
                             scope.$watch(function () {
                                 return element[0].innerHTML;
-                            }, function (oldVal, newVal) {
-                                if (oldVal !== newVal) {
+                            }, function (newValue, oldValue) {
+                                if (newValue !== oldValue) {
                                     $timeout(initSelect);
                                 }
                             });
@@ -331,7 +398,7 @@
      </li>
      </ul>*/
     angular.module("ui.materialize.dropdown", [])
-        .directive("dropdown", ["$compile", "$timeout", function ($compile, $timeout) {
+        .directive("dropdown", ["$timeout", function ($timeout) {
             return {
                 scope: {
                     inDuration: "@",
@@ -344,7 +411,6 @@
                 },
                 link: function (scope, element, attrs) {
                     $timeout(function () {
-                        $compile(element.contents())(scope);
                         element.dropdown({
                             inDuration: (angular.isDefined(scope.inDuration)) ? scope.inDuration : undefined,
                             outDuration: (angular.isDefined(scope.outDuration)) ? scope.outDuration : undefined,
@@ -370,12 +436,22 @@
      </inputfield>
      */
     angular.module("ui.materialize.inputfield", [])
-        .directive('inputField', ["$compile", "$timeout", function ($compile, $timeout) {
+        .directive('inputField', ["$timeout", function ($timeout) {
+            var inputLabelIdCounter = 0;
             return {
                 transclude: true,
                 scope: {},
                 link: function (scope, element) {
                     $timeout(function () {
+                        var input = element.find("> > input, > > textarea");
+                        var label = element.find("> > label");
+
+                        if (input.length == 1 && label.length == 1 && !input.attr("id") && !label.attr("for")) {
+                            var id = "angularMaterializeID" + inputLabelIdCounter++;
+                            input.attr("id", id);
+                            label.attr("for", id);
+                        }
+
                         Materialize.updateTextFields();
 
                         // The "> > [selector]", is to restrict to only those tags that are direct children of the directive element. Otherwise we might hit to many elements with the selectors.
@@ -621,8 +697,8 @@
                     $compile(element.contents())(scope);
                     if (!(scope.ngReadonly)) {
                         $timeout(function () {
-                            var pickadateInput = element.pickadate({
-                                container : (angular.isDefined(scope.container)) ? scope.container : 'body',
+                            var options = {
+                                container : scope.container,
                                 format: (angular.isDefined(scope.format)) ? scope.format : undefined,
                                 formatSubmit: (angular.isDefined(scope.formatSubmit)) ? scope.formatSubmit : undefined,
                                 monthsFull: (angular.isDefined(monthsFull)) ? monthsFull : undefined,
@@ -642,11 +718,15 @@
                                 onClose: (angular.isDefined(scope.onClose)) ? function(){ scope.onClose(); } : undefined,
                                 onSet: (angular.isDefined(scope.onSet)) ? function(){ scope.onSet(); } : undefined,
                                 onStop: (angular.isDefined(scope.onStop)) ? function(){ scope.onStop(); } : undefined
-                            });
+                            };
+                            if (!scope.container) {
+                                delete options.container;
+                            }
+                            var pickadateInput = element.pickadate(options);
                             //pickadate API
                             var picker = pickadateInput.pickadate('picker');
 
-                            //watcher of min and max
+                            //watcher of min, max, and disabled dates
                             scope.$watch('max', function(newMax) {
                                 if( picker ) {
                                     var maxDate = new Date(newMax);
@@ -657,6 +737,12 @@
                                 if( picker ) {
                                     var minDate = new Date(newMin);
                                     picker.set({min: isValidDate(minDate) ? minDate : false});
+                                }
+                            });
+                            scope.$watch('disable', function(newDisabled) {
+                                if( picker ) {
+                                    var disabledDates = angular.isDefined(newDisabled) && angular.isArray(newDisabled) ? newDisabled : false;
+                                    picker.set({disable: disabledDates});
                                 }
                             });
                         });
@@ -690,7 +776,7 @@
                 link: function (scope, element) {
                     $(element).addClass("timepicker");
                     if (!(scope.ngReadonly)) {
-                        element.clockpicker({
+                        element.pickatime({
                             default: (angular.isDefined(scope.default)) ? scope.default : '',
                             fromnow: (angular.isDefined(scope.fromnow)) ? scope.fromnow : 0,
                             donetext: (angular.isDefined(scope.donetext)) ? scope.donetext : 'Done',
@@ -720,7 +806,7 @@
      * Based on https://github.com/brantwills/Angular-Paging
      */
     angular.module("ui.materialize.pagination", [])
-        .directive('pagination', function () {
+        .directive('pagination', ["$sce", function ($sce) {
 
             // Assign null-able scope values from settings
             function setScopeValues(scope, attrs) {
@@ -737,6 +823,7 @@
                 scope.scrollTop = scope.$eval(attrs.scrollTop);
                 scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
                 scope.showPrevNext = scope.$eval(attrs.showPrevNext);
+                scope.useSimplePrevNext = scope.$eval(attrs.useSimplePrevNext);
             }
 
             // Validate and clean up any scope values
@@ -767,6 +854,7 @@
 
             // Internal Pagination Click Action
             function internalAction(scope, page) {
+                page = page.valueOf();
                 // Block clicks we try to load the active page
                 if (scope.page == page) {
                     return;
@@ -789,7 +877,7 @@
                 var i = 0;
                 for (i = start; i <= finish; i++) {
                     var item = {
-                        value: i.toString(),
+                        value: $sce.trustAsHtml(i.toString()),
                         liClass: scope.page == i ? scope.activeClass : 'waves-effect',
                         action: function() {
                             internalAction(scope, this.value);
@@ -803,7 +891,7 @@
             // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
             function addDots(scope) {
                 scope.List.push({
-                    value: scope.dots
+                    value: $sce.trustAsHtml(scope.dots)
                 });
             }
 
@@ -845,22 +933,33 @@
                     disabled = scope.page - 1 <= 0;
                     var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
 
-                    alpha = { value : "<<", title: 'First Page', page: 1 };
-                    beta = { value: "<", title: 'Previous Page', page: prevPage };
+                    if (scope.useSimplePrevNext) {
+                        alpha = {value: "<<", title: 'First Page', page: 1};
+                        beta = {value: "<", title: 'Previous Page', page: prevPage };
+                    } else {
+                        alpha = {value: "<i class=\"material-icons\">first_page</i>", title: 'First Page', page: 1};
+                        beta = {value: "<i class=\"material-icons\">chevron_left</i>", title: 'Previous Page', page: prevPage };
+                    }
 
                 } else {
 
                     disabled = scope.page + 1 > pageCount;
                     var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
 
-                    alpha = { value : ">", title: 'Next Page', page: nextPage };
-                    beta = { value: ">>", title: 'Last Page', page: pageCount };
+                    if (scope.useSimplePrevNext) {
+                        alpha = { value : ">", title: 'Next Page', page: nextPage };
+                        beta = { value: ">>", title: 'Last Page', page: pageCount };
+                    } else {
+                        alpha = { value : "<i class=\"material-icons\">chevron_right</i>", title: 'Next Page', page: nextPage };
+                        beta = { value: "<i class=\"material-icons\">last_page</i>", title: 'Last Page', page: pageCount };
+                    }
+
                 }
 
                 // Create the Add Item Function
                 var addItem = function(item, disabled){
                     scope.List.push({
-                        value: item.value,
+                        value: $sce.trustAsHtml(item.value),
                         title: item.title,
                         liClass: disabled ? scope.disabledClass : '',
                         action: function(){
@@ -959,6 +1058,7 @@
                     adjacent: '@',
                     scrollTop: '@',
                     showPrevNext: '@',
+                    useSimplePrevNext: '@',
                     paginationAction: '&',
                     ulClass: '=?'
                 },
@@ -969,7 +1069,7 @@
                         'ng-click="Item.action()" ' +
                         'ng-repeat="Item in List"> ' +
                         '<a href> ' +
-                        '<span ng-bind="Item.value"></span> ' +
+                        '<span ng-bind-html="Item.value"></span> ' +
                         '</a>' +
                     '</ul>',
                 link: function (scope, element, attrs) {
@@ -980,7 +1080,7 @@
                     });
                 }
             };
-        });
+        }]);
 
     /*     example usage:
      <!-- Modal Trigger -->
@@ -1015,13 +1115,15 @@
                         $compile(element.contents())(scope);
 
                         var complete = function () {
-                            angular.isFunction(scope.complete) && scope.$eval(scope.complete());
+                            angular.isFunction(scope.complete) && scope.$apply(scope.complete);
 
                             scope.open = false;
                             scope.$apply();
                         };
                         var ready = function() {
-                          angular.isFunction(scope.ready) && scope.$eval(scope.ready());
+                          angular.isFunction(scope.ready) && scope.$apply(scope.ready);
+                          // Need to keep open boolean in sync.
+                          scope.open = true;
                           // If tab support is enabled we need to re-init the tabs
                           // See https://github.com/Dogfalo/materialize/issues/1634
                           if (scope.enableTabs) {
@@ -1059,16 +1161,45 @@
     angular.module("ui.materialize.tooltipped", [])
         .directive("tooltipped", ["$compile", "$timeout", function ($compile, $timeout) {
             return {
-                restrict: "EA",
+                restrict: "A",
                 scope: true,
                 link: function (scope, element, attrs) {
-                    element.addClass("tooltipped");
-                    $compile(element.contents())(scope);
 
-                    $timeout(function () {
-                        element.tooltip();
+                    var rmDestroyListener = Function.prototype; //assigning to noop
+
+                    function init() {
+                        element.addClass("tooltipped");
+                        $compile(element.contents())(scope);
+
+                        $timeout(function () {
+                            // https://github.com/Dogfalo/materialize/issues/3546
+                            // if element.addClass("tooltipped") would not be executed, then probably this would not be needed
+                            if (element.attr('data-tooltip-id')){
+                                element.tooltip('remove');
+                            }
+                            element.tooltip();
+                        });
+                        rmDestroyListener = scope.$on('$destroy', function () {
+                            element.tooltip("remove");
+                        });
+                    };
+
+                    attrs.$observe('tooltipped', function (value) {
+                        if (value === 'false' && rmDestroyListener !== Function.prototype) {
+                            element.tooltip("remove");
+                            rmDestroyListener();
+                            rmDestroyListener = Function.prototype;
+                        } else if (value !== 'false' && rmDestroyListener === Function.prototype) {
+                            init();
+                        }
                     });
-                    scope.$on('$destroy', function () {
+
+                    if (attrs.tooltipped !== 'false') {
+                        init();
+                    }
+
+                    // just to be sure, that tooltip is removed when somehow element is destroyed, but the parent scope is not
+                    element.on('$destroy', function() {
                         element.tooltip("remove");
                     });
                 }

@@ -7,8 +7,14 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
   });
 }])
 
-.controller('kompetencjeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-    
+.controller('kompetencjeCtrl', ['$scope', '$http', '$routeParams', '$route', function($scope, $http, $routeParams, $route) {
+
+    // funkcja która re-renderuje całą stronę
+    $scope.reRender = function(){
+        $route.reload();
+    };
+
+    // usuwanie istniejącej relacji pomiędzy dwiema kompetencjami
     $scope.usunRelacje = function(nodeFromId, nodeToId){
 
         // pobierz dane dot kompetencji o id nodeFromId i usun nodeToId z listy jej dzieci (bazoweId)
@@ -72,7 +78,6 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
         var rodzicIdInt = rodzicId;
         var rodzicIdStr = rodzicId.toString();
 
-        console.log(nazwaNowejKompetencji);
         // stwórz POSTem nową kompetencję i pobierz jej nowo-przydzielone id
         $http({
             method: 'POST',
@@ -91,7 +96,7 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
             $http({
                 method: 'POST',
                 url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/kompetencje/' + idNowejKompetencjiStr + '/rodzic',
-                data: [{"id": parseInt(rodzicId)}]
+                data: {"id": parseInt(rodzicId)}
             }).success(function(response){
                 console.log("Do nowo utworzonej kompetencji pomyślnie dodano id rodzica");
             });
@@ -110,7 +115,7 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
                         noweBazoweId.push({"id": response.bazoweId[i]});
                     }
                 }
-                // noweBazoweId.push({"id": idNowejKompetencji});
+                noweBazoweId.push({"id": idNowejKompetencji});
                 
                                 
                 // dodaj kompetencji-rodzic zaktualizowaną liste kompetencji-dzieci
@@ -126,21 +131,47 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
         });
     };
 
-    // funckaj ktora dodaje do kompetencji-rodzica nowe dziecko spośród istaniejących juz kompetencji
-    // $scope.utworzRelacje 
+    // funkcja ktora dodaje do kompetencji-rodzica nowe dziecko spośród istaniejących juz kompetencji
+    $scope.dodajRodzicaKompetencji = function(rodzicId, dzieckoId){
+        var dzieckoIdStr = dzieckoId.toString();
 
+        // przypisywanie rodzica do danej kompetencji
+        // (przypisywanie id dziecka do rodzica działa automatycznie po stronie serwera)
+        $http({
+            method: 'POST',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/kompetencje/' + dzieckoIdStr + '/rodzic',
+            data: {"id": rodzicId}
+        }).success(function(response){
+            console.log(
+                "Aktualizacja drzewa realcji przebiegał pomyślnie. Nowa relacja: rodzic (id: " + rodzicId + ") -> dziecko (id: " + dzieckoId + ")");
+        });
+    };
 
-    $http({
-        method: 'GET',
-        url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/kompetencje'
-        //url: 'static_resources/kompetencje.json'
-    }).success(function(response){
-        $scope.daneX = response;
-        competencesPage.init();
-        $('.modal-trigger').leanModal();
-    });
+    // funkcja któr dodaje nową kompetencję bez tworzenia relacji (nie jest dodawana do drzewa)
+    $scope.dodajKompetencjeBezRelacji = function(nazwaKompetencji){
+        $http({
+            method: 'POST',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/kompetencje/',
+            data: {"nazwa": nazwaKompetencji}
+        }).success(function(response){
+            console.log("Success!");
+            $scope.reRender();
+        });
+    };
 
+    // funkcja która pobiera wszystkie kompetencje
+    $scope.GET_kompetencje = function(){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/kompetencje'
+        }).success(function(response){
+            $scope.daneX = response;
+            competencesPage.init();
+            $('.modal-trigger').leanModal();
+        });
+    };
 
+    $scope.GET_kompetencje();
 
     var competencesPage = {
         elements: {
@@ -166,7 +197,7 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
              
             // Dodanie calkowicie nowej kompetencji
             // ZMIANA 1 ---\
-            $('#addnewcompetencemodal a.addnewcompetence').on("click");
+            $('#addnewcompetencemodal a.addnewcompetence').off("click");
             $('#addnewcompetencemodal a.addnewcompetence').on("click", function(e){
                 competencesPage.addNewCompetence();
             });
@@ -297,51 +328,54 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
             competencesPage.elements.clearFLag = false;
              
             $('.modal-trigger').leanModal(); // otwarcie modala
-            // Obiekt cytoscape
-            var cy = cytoscape({
-                container: document.getElementById('cy'),
-     
-                boxSelectionEnabled: false,
-                autounselectify: true,
-                // zoomingEnabled: false,
-     
-                layout: {
-                    name: 'dagre',
-                    animate: true
-                },
-     
-                style: [
-                    {
-                        selector: 'node',
-                        style: {
-                            'content': 'data(label)',
-                            'text-opacity': 0.5,
-                            'text-valign': 'center',
-                            'text-halign': 'right',
-                            'background-color': '#11479e'
-                        }
+            // ustawienie timeout'u 
+            setTimeout(function() { 
+                // Obiekt cytoscape
+                var cy = cytoscape({
+                    container: document.getElementById('cy'),
+         
+                    boxSelectionEnabled: false,
+                    autounselectify: true,
+                    // zoomingEnabled: false,
+         
+                    layout: {
+                        name: 'dagre',
+                        animate: true
                     },
-                    {
-                        selector: 'edge',
-                        style: {
-                            'width': 4,
-                            'target-arrow-shape': 'triangle',
-                            'line-color': '#9dbaea',
-                            'target-arrow-color': '#9dbaea'
-                        }
-                    },
-                    {
-                      selector: '.top-left',
-                      style: {
-                        'text-valign': 'top',
-                        'text-halign': 'left'
-                      }
-                    },
-                ],
-                elements: elements, // Obiekt elements wygenerowany w cytoscapeInit
-            });
-             
-            competencesPage.cytoscapeEvents(cy, id); // Eventy po wygenerowaniu drzewa
+         
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'content': 'data(label)',
+                                'text-opacity': 0.5,
+                                'text-valign': 'center',
+                                'text-halign': 'right',
+                                'background-color': '#11479e'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 4,
+                                'target-arrow-shape': 'triangle',
+                                'line-color': '#9dbaea',
+                                'target-arrow-color': '#9dbaea'
+                            }
+                        },
+                        {
+                          selector: '.top-left',
+                          style: {
+                            'text-valign': 'top',
+                            'text-halign': 'left'
+                          }
+                        },
+                    ],
+                    elements: elements, // Obiekt elements wygenerowany w cytoscapeInit
+                });
+                 
+                competencesPage.cytoscapeEvents(cy, id); // Eventy po wygenerowaniu drzewa
+            }, 130);
         },  
         cytoscapeEvents: function(cy, id){
      
@@ -420,6 +454,9 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
                         }
                     });
                     // -----/\
+
+
+                    $scope.dodajRodzicaKompetencji(parseInt(node.id()), childId);
                      
                     competencesPage.elements.clearFLag = true; // ustawienie flagi czyszczenia drzewa (bedzie wygenerowane nowe)
                     competencesPage.init(); // inicjalizacja wszystkiego jeszcze raz (nowe wygenerowanie listy i drzewa)
@@ -511,25 +548,25 @@ angular.module('MortApp.kompetencje', ['ngRoute'])
         // ZMIANA 1 ---\
         // Dodawanie calkowicie nowe kompetencji do bazy
         addNewCompetence: function(){
-            var index = $scope.daneX.length + 1;
-            $scope.daneX.push(
-                {
-                    id: index, 
-                    nazwa: $("#new-competence-name").val(),
-                    rodzicId: [],
-                    bazoweId: []
-                }
-            );
-            $("#new-competence-name").val(""); // Wyczyść inputa po dodaniu
-            $(".competences-list").empty(); // Wyczyść liste kompetencji przed ponowną inicjalizacją
-            competencesPage.init();
+
+            // var index = $scope.daneX.length + 1;
+            // $scope.daneX.push(
+            //     {
+            //         id: index, 
+            //         nazwa: $("#new-competence-name").val(),
+            //         rodzicId: [],
+            //         bazoweId: []
+            //     }
+            // );
+
+            // funkcja wysyłająca POST do serwera
+            $scope.dodajKompetencjeBezRelacji($("#new-competence-name").val());
+
+            // $("#new-competence-name").val(""); // Wyczyść inputa po dodaniu
+            // $(".competences-list").empty(); // Wyczyść liste kompetencji przed ponowną inicjalizacją
+            // competencesPage.init();
         }
         // ZMIANA 1 ---/
     };
-     
-
-
- 
-    
-    
+   
 }]);
