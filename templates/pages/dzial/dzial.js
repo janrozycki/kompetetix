@@ -9,9 +9,6 @@ angular.module('MortApp.dzial', ['ngRoute'])
 
 .controller('dzialCtrl', ['$scope', '$http', '$routeParams', '$route', function($scope, $http, $routeParams, $route) {
 
-    $scope.inputLimit = true;
-    $scope.inputCounter = 1;
-
     $scope.reRender = function(){
         $route.reload();
     };
@@ -19,16 +16,40 @@ angular.module('MortApp.dzial', ['ngRoute'])
         $('#add-process').closeModal();
     };
 
-    $scope.dodajKolejnyProces = function(){ 
-        var inputNumber = $scope.inputCounter + 1;
-        $('#noweProcesyForm').append("<div class='input-field col s10'><input ng-model='nowyProces_" + inputNumber + "' class='section-name' type='text' class='validate'><label for='first_name'> Nazwa procesu</label></div>");
-        if ($scope.inputCounter == 2){
-            $scope.inputLimit = false;
-        }
-        $scope.inputCounter++;
+    $scope.POST_procesDoDzialu = function(idNowegoProcesu){
+        $http({
+            method: 'POST', 
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $routeParams.id + '/proces',
+            data: {
+                "id": idNowegoProcesu
+            }
+        }).success(function(response){
+            $scope.hideModal();
+            $scope.reRender();
+        });
     };
 
+    $scope.generujDostepneProcesy = function(){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/procesy/'
+        }).success(function(response){
+            $scope.wszystkieProcesy = response;
+            $scope.procesyWDziale = $scope.procesy;
+            $scope.dostepneProcesy = [];
 
+            $scope.idProcesowWDziale = [];
+            for (var i = 0; i < $scope.procesyWDziale.length; i++){
+                $scope.idProcesowWDziale.push($scope.procesyWDziale[i].id);
+            }
+
+            for (var i = 0; i < $scope.wszystkieProcesy.length; i++){
+                if ($scope.idProcesowWDziale.indexOf($scope.wszystkieProcesy[i].id) === -1 ){
+                    $scope.dostepneProcesy.push($scope.wszystkieProcesy[i]);
+                }
+            }
+        });
+    };
 
     $scope.dodajNowyProcesDoDzialu = function(){
         $http({
@@ -38,37 +59,59 @@ angular.module('MortApp.dzial', ['ngRoute'])
                 "nazwaProcesu" : $scope.nazwaNowegoProcesu
             }
         }).success(function(response){
-            var idNowegoProcesu = parseInt(response);
-            $http({
-                method: 'PUT', 
-                url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $routeParams.id + '/proces',
-                data: {
-                    "id": idNowegoProcesu
-                }
-            }).success(function(response){
-                $scope.hideModal();
-                $scope.reRender();
-            });
-
+            $scope.POST_procesDoDzialu(parseInt(response));
         });
     };
 
-    $scope.dodajIstaniejącyProcesDoDzialu = function(){
-
+    $scope.dodajIstaniejacyProcesDoDzialu = function(){
+        $scope.POST_procesDoDzialu(parseInt($scope.nowyProcesWDziale));
     };
 
     $scope.dodajProcesDoDzialu = function(){
-        if($('#add-process-accordion > li:first-child').hasClass("active")){
+        if($('#add-new-process-to-department').hasClass("active")){
             // użytkownik wybrał opcję dodania nowego procesu do działu
-            $scope.dodajNowyProcesDoDzialu();
-        }else if($('#add-process-accordion > li:nth-child(2)').hasClass("active")){
+            if ($scope.nazwaNowegoProcesu == undefined){
+                console.log("Nie podano nazwy działu")
+            }else{
+                $scope.dodajNowyProcesDoDzialu();
+            }
+
+        }else if($('#add-existing-process-to-department').hasClass("active")){
             // użytkownik wybrał opcję dodanie istaniejącego procesu do działu
-            console.log("Second element selected");
+            if ($scope.nowyProcesWDziale == undefined){
+                console.log("Nie wybrano działu");
+            }else{
+                $scope.dodajIstaniejacyProcesDoDzialu();
+            }
+
         }else{
             console.log("You didn't specify any new process")
         }
     };
 
+    $scope.pobierzProcesyWDziale = function(){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $routeParams.id
+        }).success(function(response){
+            $scope.dzial = response;
+            $scope.procesy = response.procesy;
+
+            for (var i = 0; i < $scope.procesy.length; i++) {
+                $scope.counter1 = 0;
+                $http({
+                    method: 'GET',
+                    url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/procesy/' + $scope.procesy[i].id + '/stanowiska'
+                }).success(function(response){
+                    $scope.procesy[$scope.counter1].liczbaStanowisk = response.length;
+                    $scope.counter1++;
+                });
+            }
+
+            $scope.generujDostepneProcesy();
+
+        });
+    };
 
     // $scope.dodajProcesDoDzialu = function(){
     //     // jak dodać kilka procesów na raz????
@@ -83,17 +126,15 @@ angular.module('MortApp.dzial', ['ngRoute'])
     //         }
     //     }).success(function(response){
     //         var idNowegoProcesu = parseInt(response);
-    //         // var liczbaProcesowWDziale = $scope.dzial.procesy.length;
-    //         // var nazwaDzialu = $scope.dzial.nazwaDzialu;
-    //         // var IdprocesowWDziale = [];
-    //         // if(liczbaProcesowWDziale > 0){
-    //         //     for (var i = 0; i < liczbaProcesowWDziale; i++){
-    //         //         IdprocesowWDziale.push({"id": $scope.dzial.procesy[i].id})
-    //         //     }
-    //         // }
-    //         // IdprocesowWDziale.push({"id": idNowegoProcesu});
-
-
+    //         var liczbaProcesowWDziale = $scope.dzial.procesy.length;
+    //         var nazwaDzialu = $scope.dzial.nazwaDzialu;
+    //         var IdprocesowWDziale = [];
+    //         if (liczbaProcesowWDziale > 0){
+    //             for (var i = 0; i < liczbaProcesowWDziale; i++){
+    //                 IdprocesowWDziale.push({"id": $scope.dzial.procesy[i].id})
+    //             }
+    //         }
+    //         IdprocesowWDziale.push({"id": idNowegoProcesu});
 
     //         $http({
     //             method: 'PUT', 
@@ -111,29 +152,9 @@ angular.module('MortApp.dzial', ['ngRoute'])
     //     });
     // };
 
-    $http({
-        method: 'GET',
-        url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $routeParams.id
-    }).success(function(response){
-        $scope.dzial = response;
-    });
+    // ========================================================================
+    // Funkcje wywołujące się automatycznie po załadowaniu strony:
 
-	$http({
-		method: 'GET',
-		url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + $routeParams.id + '/procesy' 
-	}).success(function(response){
-		$scope.procesy = response;
-        for (var i = 0; i < $scope.procesy.length; i++) {
-            $scope.counter1 = 0;
-            $http({
-                method: 'GET',
-                url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/procesy/' + $scope.procesy[i].id + '/stanowiska'
-            }).success(function(response){
-                $scope.procesy[$scope.counter1].liczbaStanowisk = response.length;
-                $scope.counter1++;
-            });
-
-        }
-	});
+    $scope.pobierzProcesyWDziale();
 	
 }]);

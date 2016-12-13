@@ -40,33 +40,29 @@
             <div class="row" id="noweProcesyForm">
                 
                 <ul class="collapsible collapsible-accordion" data-collapsible="accordion" id="add-process-accordion">
-                  <li class="">
-                    <div class="collapsible-header active"><i class="material-icons">add</i>Nowy proces</div>
-                    <div class="collapsible-body" style="display: none;">
-                        <div class="input-field s10 collapsible-inner-input">
-                            <input ng-model="nazwaNowegoProcesu" id="section-name" type="text" class="validate" required>
-                            <label for="first_name">Nazwa procesu</label>
+                    <li class="" id="add-new-process-to-department">
+                        <div class="collapsible-header active"><i class="material-icons">add</i>Nowy proces</div>
+                        <div class="collapsible-body" style="display: none;">
+                            <div class="input-field s10 collapsible-inner-input">
+                                <input ng-model="nazwaNowegoProcesu" id="section-name" type="text" class="validate" required>
+                                <label for="first_name">Nazwa procesu</label>
+                            </div>
                         </div>
-                    </div>
-                  </li>
-                  <li class="active">
-                    <div class="collapsible-header"><i class="material-icons">repeat</i>Istniejący proces</div>
-                    <div class="collapsible-body" style="display: block;">
-                    <div class="s10 input-field collapsible-inner-input">
-                            <select class="selectInput" ng-model="IdDodawanegoProcesu" material-select watch>
+                    </li>
+                    <li class="active" id="add-existing-process-to-department">
+                        <div class="collapsible-header"><i class="material-icons">repeat</i>Istniejący proces</div>
+                        <div class="collapsible-body" style="display: block;">
+                        <div class="s10 input-field collapsible-inner-input">
+                            <select class="selectInput" ng-model="nowyProcesWDziale" material-select watch>
                                 <option disabled>Lista dostępnych procesów</option>
-                                <option ng-repeat="proces in wszystkieProcesy" value="{{proces.id}}">{{proces.nazwaProcesu}}</option>
+                                <option ng-repeat="proces in dostepneProcesy" value="{{proces.id}}">{{proces.nazwaProcesu}}</option>
                             </select>
                             <label>Wybór processsów</label>
                         </div>
                     </div>
                   </li>
                 </ul>
-                <!-- <div class="col s1">
-                     <div ng-show="inputLimit" class="align-right" ng-click="dodajKolejnyProces()" tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj kolejny proces">
-                        <a class="btn-floating btn-large waves-effect waves-light dark-blue-bg"><i class="material-icons">add</i></a>
-                    </div>
-                </div> -->
+
             </div> <!-- /row -->
         </div> <!-- /modal-content -->
         <div class="modal-footer">            
