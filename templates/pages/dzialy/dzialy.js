@@ -14,7 +14,10 @@ angular.module('MortApp.dzialy', ['ngRoute'])
     $scope.dzialy_ids_array = [];
   
     $scope.customHTTPCall = function(IDsArray, arrayIndex, urlEnding){
-        $http({method: 'GET', url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + IDsArray[arrayIndex] + '/' + urlEnding}).success(function(response){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy/' + IDsArray[arrayIndex] + '/' + urlEnding
+        }).success(function(response){
             $scope.dzialy[arrayIndex][urlEnding] = response;
         });
     };
@@ -27,7 +30,7 @@ angular.module('MortApp.dzialy', ['ngRoute'])
     $scope.hideModal = function(){
         $('#add-department').closeModal();
     };
-    
+
     $scope.dodajDzial = function(){
         if($scope.procesyNowegoDzialu){
             var procesyDoWyslania = []

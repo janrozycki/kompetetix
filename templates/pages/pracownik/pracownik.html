@@ -20,9 +20,9 @@
                         <span tooltipped data-position="left" data-delay="50" data-tooltip="Dodaj kompetencję">
                             <a modal href="#addworkercompetence" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
                         </span>
-                        <span tooltipped data-position="left" data-delay="50" data-tooltip="Edytuj kompetencje" ng-click="toggleEditMode()">
+                        <!-- <span tooltipped data-position="left" data-delay="50" data-tooltip="Edytuj kompetencje" ng-click="toggleEditMode()">
                             <a class="btn-floating btn-large waves-effect waves-light dark-blue-bg" ><i class="material-icons">edit</i></a>
-                        </span>
+                        </span> -->
                         <span tooltipped data-position="left" data-delay="50" data-tooltip="Usuń pracownika" ng-click="usunPracownika()">
                             <a href="#addsection" class="btn-floating btn-large waves-effect waves-light dark-blue-bg"><i class="material-icons">delete</i></a>
                         </span>
@@ -34,7 +34,7 @@
                         <h5>Kompetencje:</h5>
                         <div ng-show="! czyBrakKompetencji" class="chip stanowisko" ng-repeat="kompetencja in kompetencje">
                             {{kompetencja.kompetencja.nazwa}} <span id="competenceValue">{{kompetencja.silaKompetencji}}</span>
-                            <a modal href="#editworkercompetence" class="modal-trigger edit-competence-icon" ><i class="material-icons">edit</i></a>
+                            <a modal href="#editworkercompetence" class="modal-trigger edit-competence-icon" ><i class="material-icons" ng-click="selectCompetenceToEdit(kompetencja)">edit</i></a>
                         </div>
                         <div ng-show="czyBrakKompetencji">
                             Ten pracownik nie ma jeszcze żadnych kompetencji.
@@ -68,7 +68,6 @@
 
                 <div class="col s12 input-field">
                     <select ng-model="ocenaNowejKompetencji" material-select watch class="select-input position-select choose-position">
-                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -87,15 +86,15 @@
         </div>
     </div>
     <!-- /MODAL -->
+
     <!-- MODAL -->
     <div id="editworkercompetence" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Zmień wartość kompetencji:</h4>
-            <p>Aktualna wartość kompetencji *Nazwa kompetencji* wynosi: *Wartość kompetencji*</p>
+            <p>Aktualna wartość kompetencji {{ competenceNameToEdit }} wynosi: {{ oldCompetenceRatingToEdit }}</p>
             <div class="row">
-                <div class="col s10" input-field>
+                <div class="col s10 input-field">
                     <select ng-model="nowaOcenaKompetencji" material-select watch class="selectInput position-select choose-position">
-                        <option class="optionInput" value="0">0</option>
                         <option class="optionInput" value="1">1</option>
                         <option class="optionInput" value="2">2</option>
                         <option class="optionInput" value="3">3</option>
@@ -109,32 +108,36 @@
         </div>
         <div class="modal-footer">            
             <a class="waves-effect waves-light btn modal-action modal-close grey">Anuluj</a>
-            <button class="ladda-button waves-effect waves-light btn" data-style="zoom-in">Zatwierdź</button>
+            <button class="ladda-button waves-effect waves-light btn" ng-click="editWorkerCompetence()" data-style="zoom-in">Zatwierdź</button>
         </div>
     </div>
     <!-- /MODAL -->
+
     <!-- MODAL -->
     <div id="editworkerdetails" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Edycja danych pracownika:</h4>
             <div class="row">
                 <div class="input-field col s6">
-                    <input  id="section-name" type="text" class="validate textInput" value="Jan" />
-                    <label for="section-name">Imię</label>
+                    <input  id="section-name" type="text" class="validate textInput" value="{{pracownik.imie}}" />
+                    <label class="active" for="section-name">Imię</label>
                 </div>
 
                 <div class="input-field col s6">
-                    <input  id="section-second-name" type="text" class="validate textInput" value="Kowalski" />
-                    <label for="section-second-name">Nazwisko</label>
+                    <input id="section-second-name" type="text" class="validate textInput" value="{{pracownik.nazwisko}}" />
+                    <label class="active" for="section-second-name">Nazwisko</label>
                 </div>
                 
                 <div class="col s12 input-field">
-                    <select class="selectInput" material-select multiple watch id="select_dzialy">
-                        <option disabled>Lista dostepnych działów</option>
-                        <option ng-repeat="dzial in wszystkieDzialy" value="{{dzial.id}}">{{dzial.nazwaDzialu}}</option>
+                    <select class="selectInput" material-select multiple watch id="select_dzialy" ng-model="noweDzialyPracownika">
+                        <option disabled>Działy pracownika</option>
+                        <option ng-repeat="dzial in wszystkieDzialy" class="selected" value="{{dzial.id}}">{{dzial.nazwaDzialu}}</option>
                     </select>
-                    <label>Wybierz dział(y) dla pracownika</label>
+                    <label>Działy pracownika</label>
                 </div>
+
+
+
 
             </div>
         </div>
@@ -144,5 +147,6 @@
         </div>
     </div>
     <!-- /MODAL -->
+
 </div> <!-- /worker -->
-<!-- /CONTENT -->
+<!-- /CONTENT

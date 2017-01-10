@@ -9,7 +9,7 @@ angular.module('MortApp.pracownik', ['ngRoute'])
 
 .controller('pracownikCtrl', ['$scope', '$http', '$routeParams', '$route', function($scope, $http, $routeParams, $route) {
     $scope.czyBrakKompetencji = false;
-    $scope.editMode = false;
+    $scope.editMode = true;
 
     $scope.toggleEditMode = function() {
         if($scope.editMode === false) {
@@ -23,8 +23,31 @@ angular.module('MortApp.pracownik', ['ngRoute'])
     $scope.reRender = function(){
         $route.reload();
     };
+    // funkcja która ukrywa modal (określony poprzez jego ID w DOM'ie)
     $scope.hideModal = function(modalID){
         $(modalID).closeModal();
+    };
+
+    // funkcja która przygotowuje kompetencje do edycji, zapisując jej szczegóły w $scope
+    $scope.selectCompetenceToEdit = function(kompetencjaDoEdycji){
+        $scope.competenceIdToEdit = kompetencjaDoEdycji.id;
+        $scope.competenceNameToEdit = kompetencjaDoEdycji.kompetencja.nazwa;
+        $scope.oldCompetenceRatingToEdit = kompetencjaDoEdycji.silaKompetencji;
+    }
+
+    // funkcja edytująca ocene wybranej kompetencji
+    $scope.editWorkerCompetence = function(){
+        console.log($scope.nowaOcenaKompetencji);
+        $http({
+            method: 'PUT',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/silykompetencji/' + $scope.competenceIdToEdit,
+            data: {
+                "silaKompetencji": $scope.nowaOcenaKompetencji
+            }
+        }).success(function(response){
+            $scope.hideModal('#editworkercompetence');
+            $scope.reRender();
+        });
     };
 
     $scope.GET_wszystkieKompetencje = function(){
@@ -78,6 +101,7 @@ angular.module('MortApp.pracownik', ['ngRoute'])
             url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/pracownicy/' + $routeParams.id + '/silykompetencji'
         }).success(function(response){
             $scope.kompetencje = response;
+            console.log($scope.kompetencje);
             if(response.length == 0){
                 $scope.czyBrakKompetencji = true;
             }
@@ -93,6 +117,15 @@ angular.module('MortApp.pracownik', ['ngRoute'])
             $scope.dzialyPracownika = response;
         }); 
     };
+
+    $scope.GET_wszystkieDzialy = function(){
+        $http({
+            method: 'GET',
+            url: 'http://glassfish.zecer.wi.zut.edu.pl/WebApplication20/dane/dzialy'
+        }).success(function(response){
+            $scope.wszystkieDzialy = response;
+        }); 
+    }
 
     $scope.dodajPracownikowiKompetencje = function(){
         $http({
@@ -126,5 +159,6 @@ angular.module('MortApp.pracownik', ['ngRoute'])
     $scope.GET_dane_pracownika();
     $scope.GET_dzialyPracownika();
     $scope.GET_kompetencjePracownika($scope.GET_wszystkieKompetencje);
+    $scope.GET_wszystkieDzialy();
 
 }]);
